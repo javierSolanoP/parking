@@ -50,6 +50,8 @@ export default {
     display: flex;
 }
 aside{
+    top: 0;
+    position: sticky;
     margin-left: 0;
     width: 20%;
     height: 100%;

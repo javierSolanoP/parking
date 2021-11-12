@@ -75,6 +75,7 @@ article{
 form{
     width: 50%;
     height: 100%;
+    border: 0.15rem  solid #ced4da;
     border-radius: 1rem;
 }
 label{
