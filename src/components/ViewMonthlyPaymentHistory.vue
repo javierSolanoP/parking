@@ -67,7 +67,7 @@
                     </div>
                     <br>
                     <div class="body">
-                        <h2>¿Quiere renovar la mensualidad con el mismo rango de fechas?</h2>
+                        <h2>¿Quiere renovar la mensualidad con el mismo rango de fecha?</h2>
                         <div class="container-button">
                             <button @click="validateOption" class="option yes renew">Si</button>
                             <button @click="cancelOptionRenew" class="option no">No</button>
@@ -330,6 +330,7 @@ button img{
     border: none;
     border-radius: 1rem;
     cursor: pointer;
+    font-size: 120%;
 }
 
 .option.yes.pay{
@@ -342,5 +343,6 @@ button img{
 
 .option.no{
     background-color: red;
+    color: #000;
 }
 </style>

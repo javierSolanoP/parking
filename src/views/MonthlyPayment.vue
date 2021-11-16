@@ -14,34 +14,37 @@
                     <button @click="addMonthlyPayment()" class="option add">
                         <img src="agregar.PNG" alt="Agregar mensualidad">
                     </button>
-                    <button class="option delete">
+                    <button @click="updateMonthlyPayment()" class="option update">
                         <img src="modificar.PNG" alt="Modificar mensualidad">
                     </button>
                 </section>
             </article>
         </section>
+        <ViewMonthlyPaymentHistory v-show="view"/>
         <AddMonthlyPayment v-show="add"/>
-        <ViewMonthlyPaymentHistory v-show="view" modal="modal"/>
+        <UpdateMonthlyPayment v-show="update"/>
     </div>
 </template>
 
 <script>
-import AddMonthlyPayment from '@/components/AddMonthlyPayment.vue';
 import ViewMonthlyPaymentHistory from '@/components/ViewMonthlyPaymentHistory.vue';
+import AddMonthlyPayment from '@/components/AddMonthlyPayment.vue';
+import UpdateMonthlyPayment from '@/components/UpdateMonthlyPayment.vue';
 
 export default {
     name: 'MonthlyPayment',
 
     components: {
+        ViewMonthlyPaymentHistory,
         AddMonthlyPayment,
-        ViewMonthlyPaymentHistory
+        UpdateMonthlyPayment
     },
 
     data: function () {
         return {
-            add: false,
             view: false,
-            modal: false
+            add: false,
+            update: false
         }
     },
 
@@ -58,6 +61,8 @@ export default {
                 // Condicionamos la visibilidad de los otros componentes: 
                 if(this.add){
                     this.add = false;
+                }else if(this.update){
+                    this.update = false;
                 }
 
                 this.view = true;
@@ -76,9 +81,30 @@ export default {
                 // Condicionamos la visibilidad de los otros componentes: 
                 if(this.view){
                     this.view = false;
+                }else if(this.update){
+                    this.update = false;
                 }
 
                 this.add = true;
+            }
+        }, 
+
+        // Metodo para habilitar el componente que actualiza mensualidades: 
+        updateMonthlyPayment() {  
+
+            // Condicionamos la visibilidad del componente: 
+            if(this.update){
+                this.update = false;
+            }else if(!this.update){
+
+                // Condicionamos la visibilidad de los otros componentes: 
+                if(this.view){
+                    this.view = false;
+                }else if(this.add){
+                    this.add = false;
+                }
+
+                this.update = true;
             }
         }
     }
@@ -175,7 +201,7 @@ input[type="submit"]{
 .option.add{
     background-color: #F04509;
 }
-.option.delete{
+.option.update{
     background-color: orange;
 }
 </style>

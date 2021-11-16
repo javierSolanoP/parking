@@ -1,6 +1,11 @@
 <template>
     <div id="dashboard">
         <aside>
+            <div class="container-avatar">
+                <img src="man.PNG" alt="Avatar" class="avatar">
+                <br>
+                <p>Javier Solano</p>
+            </div>
             <ul>
                 <li>
                     <img src="hour.PNG" alt="" class="icon">
@@ -15,6 +20,10 @@
                 <li></li>
                 <li></li>
             </ul>
+            <button class="logout">
+                <img src="salida.PNG" alt="Icono de cerrar sesión" class="icon">
+                <p>Cerrar sesión</p>
+            </button>
         </aside>
         <router-view></router-view>
     </div>
@@ -61,9 +70,26 @@ aside{
     align-items: center;
     justify-content: center;
 }
+.container-avatar{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-avatar .avatar{
+    width: 80%;
+    height: 80%;
+    border-radius: 100%;
+}
+.container-avatar p{
+    width: 100%;
+    color: #fff;
+}
 ul{
     width: 90%;
-    height: 100%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +99,7 @@ ul{
 li{
     border-bottom: 1px solid #fff;
     width: 100%;
-    height: 7%;
+    height: 13%;
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -96,5 +122,24 @@ li a{
 }
 li a:hover{
     color: #F04509
+}
+.logout{
+    width: 80%;
+    height: 5%;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    background-color: #F04509;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logout .icon{
+    width: 20%;
+    height: 90%;
+}
+.logout p{
+    width: 70%;
 }
 </style>
