@@ -5,15 +5,15 @@
                 <div class="container">
                     <div class="option">
                         <p class="data"><strong>ESTADO</strong></p>
-                        <p class="data success">Paga</p>
+                        <p class="data fail">No paga</p>
                     </div>
                     <div class="option button">
-                       <button class="pay" @click="payMonthlyPayment">
+                       <button class="pay" @click="openModalPay">
                             <img src="pagar.png" alt="Icono de pagar mensualidad">
                        </button>
                     </div>
                     <div class="option button">
-                        <button class="renew">
+                        <button class="renew" @click="openModalRenew">
                             <img src="renovar.png" alt="Icono de renovar mensualidad">
                         </button>
                     </div>
@@ -38,24 +38,39 @@
                         <p class="data">16/11/2021</p>
                     </div>
                     <div class="date">
-                        <p class="data"><strong>FECHA DE VENCIMIENTO</strong></p>
+                        <p class="data"><strong>FECHA DE CADUCIDAD</strong></p>
                         <p class="data">16/12/2021</p>
                     </div>
                 </div>
             </article>
         </section>
-        <div  class="container-modal">
+        <div  class="container-modal pay">
             <div class="modal">
-                    <div class="head">
+                    <div class="head pay">
                         <h1>PAGO DE MENSUALIDAD</h1>
                     </div>
                     <br>
                     <div class="body">
                         <h2>¿Quiere cambiar el estado de la mensualidad, como mensualidad paga?</h2>
                         <div class="container-button">
-                            <button @click="validateOption" class="option yes">Si</button>
-                            <button @click="cancelOption" class="option no">No</button>
+                            <button @click="validateOption" class="option yes pay">Si</button>
+                            <button @click="cancelOptionPay" class="option no">No</button>
                             
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="container-modal renew">
+            <div class="modal">
+                    <div class="head renew">
+                        <h1>RENOVACIÓN DE MENSUALIDAD</h1>
+                    </div>
+                    <br>
+                    <div class="body">
+                        <h2>¿Quiere renovar la mensualidad con el mismo rango de fechas?</h2>
+                        <div class="container-button">
+                            <button @click="validateOption" class="option yes renew">Si</button>
+                            <button @click="cancelOptionRenew" class="option no">No</button>
                         </div>
                     </div>
             </div>
@@ -73,24 +88,49 @@ export default {
     },
     methods: {
 
-        payMonthlyPayment(){
+        // Metodo para visualizar el modal de pago:
+        openModalPay(){
 
             // Selecccionamos la clase del elemento del modal: 
-            const modal = document.querySelector('.container-modal'); 
+            const modal = document.querySelector('.container-modal.pay'); 
 
             // Cambiamos la visibilidad del elemento a visible:   
             modal.style.visibility = 'visible';
+
         },
 
-        cancelOption(){
+        // Metodo para visualizar el modal de renovacion de mensualidad:
+        openModalRenew(){
 
             // Selecccionamos la clase del elemento del modal: 
-            const modal = document.querySelector('.container-modal'); 
+            const modal = document.querySelector('.container-modal.renew'); 
+
+            // Cambiamos la visibilidad del elemento a visible:   
+            modal.style.visibility = 'visible';
+
+        },
+
+        // Metodo para ocultar la visibilidad del modal de pago: 
+        cancelOptionPay(){
+
+            // Selecccionamos la clase del elemento del modal: 
+            const modal = document.querySelector('.container-modal.pay'); 
 
             // Cambiamos la visibilidad del elemento a oculto:  
             modal.style.visibility = 'hidden';
 
-        }
+        },
+
+        // Metodo para ocultar la visibilidad del modal de renovacion de mensualidad: 
+        cancelOptionRenew(){
+
+            // Selecccionamos la clase del elemento del modal: 
+            const modal = document.querySelector('.container-modal.renew'); 
+
+            // Cambiamos la visibilidad del elemento a oculto:  
+            modal.style.visibility = 'hidden';
+
+        },
     }
 }
 </script>
@@ -142,13 +182,12 @@ article .container{
     background-color: rgb(54, 230, 54);
     width: 90%;
     height: 30%;
-    
 }
 .data.fail{
     background-color: rgb(219, 10, 10);
     width: 90%;
     height: 30%;
-    
+    color: #fff
 }
 .option .data strong{
     border-bottom: 0;
@@ -232,6 +271,11 @@ button img{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.container-modal.pay{
+    visibility: hidden;
+}
+.container-modal.renew{
     visibility: hidden;
 }
 .container-modal .modal{
@@ -250,13 +294,18 @@ button img{
 .modal .head{
     width: 90%;
     height: 20%;
-    border: 0.25rem solid rgb(216, 216, 16);
     border-top: none;
     border-left: none;
     border-right: none;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.head.pay{
+    border-bottom: 0.25rem solid rgb(216, 216, 16);
+}
+.head.renew{
+    border-bottom: 0.25rem solid rgb(54, 230, 54);
 }
 .modal .body{
     width: 90%;
@@ -268,7 +317,7 @@ button img{
 }
 
 .body .container-button{
-    width: 20%;
+    width: 30%;
     height: 50%;
     display: flex;
     justify-content: space-between;
@@ -277,14 +326,18 @@ button img{
 
 .container-button .option{
     width: 40%;
-    height: 40%;
+    height: 50%;
     border: none;
     border-radius: 1rem;
     cursor: pointer;
 }
 
-.option.yes{
+.option.yes.pay{
     background-color: rgb(216, 216, 16);;
+}
+
+.option.yes.renew{
+    background-color: rgb(54, 230, 54);
 }
 
 .option.no{
