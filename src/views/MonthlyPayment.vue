@@ -21,31 +21,62 @@
             </article>
         </section>
         <AddMonthlyPayment v-show="add"/>
+        <ViewMonthlyPaymentHistory v-show="view"/>
     </div>
 </template>
 
 <script>
 import AddMonthlyPayment from '@/components/AddMonthlyPayment.vue';
+import ViewMonthlyPaymentHistory from '@/components/ViewMonthlyPaymentHistory.vue';
 
 export default {
     name: 'MonthlyPayment',
 
     components: {
-        AddMonthlyPayment
+        AddMonthlyPayment,
+        ViewMonthlyPaymentHistory,
     },
 
     data: function () {
         return {
             add: false,
+            view: false,
         }
     },
 
     methods: {
 
+        // Metodo para habilitar el componente del historial de mensualidades: 
+        queryMonthlyPayment(){
+
+            // Condicionamos la visibilidad del componente: 
+            if(this.view){
+                this.view = false;
+            }else if(!this.view){
+
+                // Condicionamos la visibilidad de los otros componentes: 
+                if(this.add){
+                    this.add = false;
+                }
+
+                this.view = true;
+            }
+ 
+        },
+
+        // Metodo para habilitar el componente que agreaga mensualidades: 
         addMonthlyPayment() {  
+
+            // Condicionamos la visibilidad del componente: 
             if(this.add){
                 this.add = false;
             }else if(!this.add){
+
+                // Condicionamos la visibilidad de los otros componentes: 
+                if(this.view){
+                    this.view = false;
+                }
+
                 this.add = true;
             }
         }
