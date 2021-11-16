@@ -5,7 +5,7 @@
                 <div class="container">
                     <div class="option">
                         <p class="data"><strong>ESTADO</strong></p>
-                        <p class="data success">No debe</p>
+                        <p class="data success">Paga</p>
                     </div>
                     <div class="option button">
                        <button class="pay">
@@ -94,19 +94,19 @@ article .container{
     align-items: center;
     justify-content: center;
     font-size: 140%;
-    border-radius: 10rem;
+    border-radius: 1rem;
 }
 .data.success{
     background-color: rgb(54, 230, 54);
     width: 90%;
     height: 30%;
-    color: #fff;
+    
 }
 .data.fail{
     background-color: rgb(219, 10, 10);
     width: 90%;
     height: 30%;
-    color: #fff;
+    
 }
 .option .data strong{
     border-bottom: 0;
@@ -135,7 +135,7 @@ button img{
 }
 
 .option.button .pay{
-    background-color: orange;
+    background-color: rgb(216, 216, 16);
 }
 
 .option.button .renew{
