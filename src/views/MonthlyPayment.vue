@@ -21,29 +21,27 @@
             </article>
         </section>
         <AddMonthlyPayment v-show="add"/>
-        <ViewMonthlyPaymentHistory v-show="view"/>
-        <Test/>
+        <ViewMonthlyPaymentHistory v-show="view" modal="modal"/>
     </div>
 </template>
 
 <script>
 import AddMonthlyPayment from '@/components/AddMonthlyPayment.vue';
 import ViewMonthlyPaymentHistory from '@/components/ViewMonthlyPaymentHistory.vue';
-import Test from '@/components/Test.vue';
 
 export default {
     name: 'MonthlyPayment',
 
     components: {
         AddMonthlyPayment,
-        ViewMonthlyPaymentHistory,
-        Test
+        ViewMonthlyPaymentHistory
     },
 
     data: function () {
         return {
             add: false,
             view: false,
+            modal: false
         }
     },
 

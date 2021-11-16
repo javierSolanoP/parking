@@ -1,19 +1,5 @@
 <template>
-    <div v-show="visibility" class="container">
-        <section>
-           <div class="modal">
-                <div class="head">
-                    <button class="exit">X</button>
-                </div>
-                <br>
-                <div class="body">
-                    <h1>¿Quiere cambiar el estado de la mensualidad como pagada?</h1>
-                    <button class="option yes">Si</button>
-                    <button class="option no">No</button>
-                </div>
-           </div>
-        </section>
-    </div>
+    
 </template>
 
 <script>
@@ -22,8 +8,24 @@ export default {
 
     data: function(){
         return {
-            visibility: true
+            
         }
+    },
+
+    props: {
+        visibility: Boolean
+    },
+
+    methods: {
+
+        cancelOption(){
+
+            // Ocultamos la visibilidad del modal: 
+            if(this.visibility){
+                this.visibility = false;
+            }
+
+        },
     }
 }
 </script>
@@ -62,14 +64,45 @@ section{
 }
 .modal .head{
     width: 90%;
-    height: 15%;
+    height: 20%;
     border: 0.25rem solid rgb(216, 216, 16);
     border-top: none;
     border-left: none;
     border-right: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .modal .body{
     width: 90%;
-    height: 80%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.body .container-button{
+    width: 20%;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-button .option{
+    width: 40%;
+    height: 40%;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.option.yes{
+    background-color: rgb(216, 216, 16);;
+}
+
+.option.no{
+    background-color: red;
 }
 </style>
