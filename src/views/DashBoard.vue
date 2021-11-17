@@ -10,7 +10,7 @@
                 <ul>
                     <li>
                         <img src="hour.PNG" alt="" class="icon">
-                        <router-link to="/horas">Horas</router-link>
+                        <router-link to="/">Horas</router-link>
                     </li>
                     <li>
                         <img src="calendario.PNG" alt="" class="icon">

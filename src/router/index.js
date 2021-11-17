@@ -2,8 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 // import App from '../App.vue';
+
+// Modulo de dashboard: 
 import DashBoard from '@/views/DashBoard.vue';
 import MonthlyPayment from '@/views/MonthlyPayment.vue';
+
 // import { component } from 'vue/types/umd';
 
 Vue.use(VueRouter)

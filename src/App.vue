@@ -60,11 +60,15 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
+@font-face {  
+  font-family: 'Roboto', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');  
+  font-weight: normal;  
+  font-style: normal;  
+}
 *{
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+ 
 }
 
 #app {
