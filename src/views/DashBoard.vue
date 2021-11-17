@@ -1,42 +1,42 @@
 <template>
-    <div id="dashboard">
-        <aside>
-            <div class="container-avatar">
-                <img src="man.PNG" alt="Avatar" class="avatar">
-                <br>
-                <p>Javier Solano</p>
-            </div>
-            <ul>
-                <li>
-                    <img src="hour.PNG" alt="" class="icon">
-                    <router-link to="/horas">Horas</router-link>
-                </li>
-                <li>
-                    <img src="calendario.PNG" alt="" class="icon">
-                    <router-link to="/mensualidades">Mensualidades</router-link>
-                <li>
-                    
-                </li>
-                <li></li>
-                <li></li>
-            </ul>
-            <button class="logout">
-                <img src="salida.PNG" alt="Icono de cerrar sesión" class="icon">
-                <p>Cerrar sesión</p>
-            </button>
-        </aside>
-        <router-view></router-view>
+    <div id="app">
+        <div id="dashboard">
+            <aside>
+                <div class="container-avatar">
+                    <img src="man.PNG" alt="Avatar" class="avatar">
+                    <br>
+                    <p>Javier Solano</p>
+                </div>
+                <ul>
+                    <li>
+                        <img src="hour.PNG" alt="" class="icon">
+                        <router-link to="/horas">Horas</router-link>
+                    </li>
+                    <li>
+                        <img src="calendario.PNG" alt="" class="icon">
+                        <router-link to="/dashboard/mensualidades">Mensualidades</router-link>
+                    </li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <button class="logout" @click="redirect">
+                    <img src="salida.PNG" alt="Icono de cerrar sesión" class="icon">
+                    <p>Cerrar sesión</p>
+                </button>
+            </aside>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'DashBoard',
 
     data: function () {
         return {
-
-            
+            view: true
         }
     },
 
@@ -46,13 +46,23 @@ export default {
 
     methods: {
 
+        // Metodo para redirigir a la vista de inicio de sesión:  
+        redirect(){
+
+            // Condicionamos la visibilidad del componente: 
+            if(this.view){
+                this.view = false;
+                
+                // Redireccionamos a la vista: 
+                location.href = '/'
+            }
+        }
     
     }
 }
 </script>
 
 <style scoped>
-
 #dashboard{
     width: 100vw;
     height: 100vh;
@@ -137,7 +147,7 @@ li a:hover{
 }
 .logout .icon{
     width: 20%;
-    height: 90%;
+    height: 80%;
 }
 .logout p{
     width: 70%;

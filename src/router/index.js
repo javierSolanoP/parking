@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
+// import App from '../App.vue';
+import DashBoard from '@/views/DashBoard.vue';
+import MonthlyPayment from '@/views/MonthlyPayment.vue';
+// import { component } from 'vue/types/umd';
 
 Vue.use(VueRouter)
 
@@ -8,7 +12,12 @@ const routes = [
   // {
   //   path: '/',
   //   name: 'App',
-  //   component: () => import('../App.vue')
+  //   component: App, children: [
+  //     { 
+  //       path: 'dashboard',
+  //       component: DashBoard
+  //     }
+  //   ]
   // }, 
   {
     path: '/about',
@@ -16,13 +25,25 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    //() => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/mensualidades',
-    name: 'MonthlyPayment',
-    component: () => import('../views/MonthlyPayment.vue')
-  }
+    path: '/dashboard',
+    name: 'DashBoard',
+    component: DashBoard, children: [
+      {
+        path: 'mensualidades',
+        component: MonthlyPayment
+      }
+    ],
+    props: true
+  },
+  // {
+  //   path: '/dashboard/mensualidades',
+  //   name: 'MonthlyPayment',
+  //   component: () => import('../views/MonthlyPayment.vue'),
+  //   props: true
+  // }
 ]
 
 const router = new VueRouter({

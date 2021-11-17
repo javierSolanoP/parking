@@ -16,27 +16,24 @@
           <input type="submit" value="Ingresar">
         </form>
       </section> 
-    </div>
-    <DashBoard v-show="dashboard"/>
+      <router-view></router-view>
+    </div>  
   </div>
 </template>
 
 <script>
-import DashBoard from '@/components/DashBoard.vue';
 
 export default {
   name: 'App',
-
-  components: {
-    DashBoard
-  },
 
   data: function(){
     return {
       user: '',
       password: '',
       denied: true,
-      dashboard: false
+      dashboard: false,
+      router: '',
+      path: '/dashboard'
     }
   },
 
@@ -45,13 +42,14 @@ export default {
     access(){
       let response = this.verifyAccount(this.user, this.password)
 
-     return response;
+      return response;
     },
 
     verifyAccount(user, password){
       if((user === 'javiers') && (password === '123')){
         this.denied = false;
         this.dashboard = true;
+        location.href = 'dashboard'
       }else{
         alert("Access denied!");
       }
@@ -78,6 +76,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: visible;
 }
 
 .access{
@@ -90,6 +89,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: visible;
 }
 
 #nav {

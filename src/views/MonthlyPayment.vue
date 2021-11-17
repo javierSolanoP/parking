@@ -12,10 +12,10 @@
                 </form>
                 <section class="container-option">
                     <button @click="addMonthlyPayment()" class="option add">
-                        <img src="agregar.PNG" alt="Agregar mensualidad">
+                        <img src="/agregar.PNG" alt="Agregar mensualidad">
                     </button>
                     <button @click="updateMonthlyPayment()" class="option update">
-                        <img src="modificar.PNG" alt="Modificar mensualidad">
+                        <img src="/modificar.PNG" alt="Modificar mensualidad">
                     </button>
                 </section>
             </article>

@@ -9,37 +9,37 @@
                     </div>
                     <div class="option button">
                        <button class="pay" @click="openModalPay">
-                            <img src="pagar.png" alt="Icono de pagar mensualidad">
+                            <img src="/pagar.png" alt="Icono de pagar mensualidad">
                        </button>
                     </div>
                     <div class="option button">
                         <button class="renew" @click="openModalRenew">
-                            <img src="renovar.png" alt="Icono de renovar mensualidad">
+                            <img src="/renovar.png" alt="Icono de renovar mensualidad">
                         </button>
                     </div>
                 </div>
                 <div class="container">
                     <div class="owner">
                         <p class="data"><strong>NOMBRE</strong></p>
-                        <p class="data">Javier</p>
+                        <p class="data content">Javier</p>
                     </div>
                     <div class="owner">
                         <p class="data"><strong>APELLIDO</strong></p>
-                        <p class="data">Solano</p>
+                        <p class="data content">Solano</p>
                     </div>
                     <div class="owner">
                         <p class="data"><strong>TELEFONO</strong></p>
-                        <p class="data">324589678</p>
+                        <p class="data content">324589678</p>
                     </div>
                 </div>
                 <div class="container">
                     <div class="date">
                         <p class="data"><strong>FECHA DE INICIO</strong></p>
-                        <p class="data">16/11/2021</p>
+                        <p class="data content">16/11/2021</p>
                     </div>
                     <div class="date">
                         <p class="data"><strong>FECHA DE CADUCIDAD</strong></p>
-                        <p class="data">16/12/2021</p>
+                        <p class="data content">16/12/2021</p>
                     </div>
                 </div>
             </article>
@@ -243,6 +243,9 @@ button img{
     width: 90%;
     height: 40%;
     border-bottom: 0.20rem  solid #130999;
+}
+.data.content{
+    font-size: 180%;
 }
 
 /* Fechas de la mensualidad registrada */
