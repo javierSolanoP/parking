@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
-// import App from '../App.vue';
+import App from '../App.vue';
 
 // Modulo de dashboard: 
 import DashBoard from '@/views/DashBoard.vue';
@@ -12,16 +12,17 @@ import MonthlyPayment from '@/views/MonthlyPayment.vue';
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'App',
-  //   component: App, children: [
-  //     { 
-  //       path: 'dashboard',
-  //       component: DashBoard
-  //     }
-  //   ]
-  // }, 
+  {
+    path: '/home',
+    name: 'App',
+    component: App, children: [
+      {
+        path: 'dashboard',
+        component: DashBoard
+      }
+    ],
+    props: true
+  }, 
   {
     path: '/about',
     name: 'About',

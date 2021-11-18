@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div class="access" v-show="denied">
+    <router-view></router-view>
+    <div class="access"> 
       <aside></aside> 
       <section>
         <div class="logo">
@@ -15,8 +16,7 @@
           <br><br>
           <input type="submit" value="Ingresar">
         </form>
-      </section> 
-      <router-view></router-view>
+      </section>
     </div>  
   </div>
 </template>
@@ -29,11 +29,7 @@ export default {
   data: function(){
     return {
       user: '',
-      password: '',
-      denied: true,
-      dashboard: false,
-      router: '',
-      path: '/dashboard'
+      password: ''
     }
   },
 
@@ -48,9 +44,6 @@ export default {
     verifyAccount(user, password){
       if((user === 'javiers') && (password === '123')){
         this.denied = false;
-        this.dashboard = true;
-        const access = document.querySelector('.access');
-        access.style.display = 'none';
         location.href = 'dashboard'
       }else{
         alert("Access denied!");
@@ -222,7 +215,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    visibility: visible;
   }
 
   #nav {

@@ -1,48 +1,50 @@
 <template>
-    <div id="app">
-        <div id="dashboard">
-            <aside>
-                <div class="container-avatar">
-                    <img src="man.PNG" alt="Avatar" class="avatar">
-                    <br>
-                    <p>Javier Solano</p>
-                </div>
-                <button class="menu" @click="showMenu">
-                    <img src="menu.PNG" alt="Menú de navegación">
-                </button>
-                <ul id="ul">
-                    <li class="exit">
-                        <button @click="exitMenu">X</button>
-                    </li>
-                    <li>
-                        <img src="hour.PNG" alt="" class="icon">
-                        <router-link to="/">Horas</router-link>
-                    </li>
-                    <li>
-                        <img src="calendario.PNG" alt="" class="icon">
-                        <router-link to="/dashboard/mensualidades">Mensualidades</router-link>
-                    </li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <button class="logout" @click="redirect">
-                    <img src="salida.PNG" alt="Icono de cerrar sesión" class="icon">
-                    <p>Cerrar sesión</p>
-                </button>
-            </aside>
-            <router-view></router-view>
-        </div>
+    <div id="dashboard">
+        <aside>
+            <div class="container-avatar">
+                <img src="man.PNG" alt="Avatar" class="avatar">
+                <br>
+                <p>Javier Solano</p>
+            </div>
+            <button class="menu" @click="showMenu">
+                <img src="menu.PNG" alt="Menú de navegación">
+            </button>
+            <ul id="ul">
+                <li class="exit">
+                    <button @click="exitMenu">X</button>
+                </li>
+                <li>
+                    <img src="hour.PNG" alt="" class="icon">
+                    <router-link to="/">Horas</router-link>
+                </li>
+                <li>
+                    <img src="calendario.PNG" alt="" class="icon">
+                    <router-link to="/dashboard/mensualidades">Mensualidades</router-link>
+                </li>
+                <li></li>
+                <li></li>
+            </ul>
+            <button class="logout" @click="redirect">
+                <img src="salida.PNG" alt="Icono de cerrar sesión" class="icon">
+                <p>Cerrar sesión</p>
+            </button>
+        </aside>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-
 export default {
+
     name: 'DashBoard',
 
     data: function () {
         return {
-            view: true
+            // Evento que controla la carga del documento y deshabilita la visibilidad del componente 'access':
+            dom: document.addEventListener('DOMContentLoaded', () => {
+                    const access = document.querySelector('.access');
+                    access.style.display = 'none';
+                })
         }
     },
 
@@ -54,14 +56,8 @@ export default {
 
         // Metodo para redirigir a la vista de inicio de sesión:  
         redirect(){
-
-            // Condicionamos la visibilidad del componente: 
-            if(this.view){
-                this.view = false;
-                
-                // Redireccionamos a la vista: 
-                location.href = '/'
-            }
+            // Redireccionamos a la vista: 
+            location.href = '/'
         },
 
         // Metodo para mostrar el menu de navegacion: 
@@ -69,6 +65,7 @@ export default {
 
             // Seleccionamos la clase del elemento 'ul':
             const ul = document.querySelector('#ul');
+            
 
             // Activamos la visibilidad del elemento: 
             ul.style.display = 'flex';
@@ -102,10 +99,29 @@ export default {
             setTimeout(hiddenDisplay, 500);
 
         }
-    
     }
 }
 </script>
+
+<style>
+/* Para moviles */
+@media screen and (max-width: 500px){
+    #app{
+        display: flex;
+        flex-direction: column;
+    }
+    .access{
+        display: flex;
+    }
+}
+/* Para ordenadores pequeños */
+@media screen and (min-width: 1232px){
+    #app{
+        display: flex;
+        flex-direction: column;
+    }
+}
+</style>
 
 <style scoped>
 #dashboard{
@@ -113,12 +129,9 @@ export default {
     height: 100vh;
     display: flex;
 }
-
 /* Para moviles */
-@media screen  and (max-width: 500px){
-    .access{
-        display: none    
-    }
+@media screen and (max-width: 500px){
+   
     #dashboard{
         flex-direction: column;
     }
@@ -291,6 +304,9 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .exit{
+        display: none;
     }
     li .icon{
         margin-left:7%;
