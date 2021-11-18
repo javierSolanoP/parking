@@ -11,6 +11,9 @@
                     <img src="menu.PNG" alt="Menú de navegación">
                 </button>
                 <ul id="ul">
+                    <li class="exit">
+                        <button @click="exitMenu">X</button>
+                    </li>
                     <li>
                         <img src="hour.PNG" alt="" class="icon">
                         <router-link to="/">Horas</router-link>
@@ -69,6 +72,35 @@ export default {
 
             // Activamos la visibilidad del elemento: 
             ul.style.display = 'flex';
+
+            // Metodo para para realizar la transicion del elemento:  
+            function  transition(){
+                // Seleccionamos la clase del elemento 'ul':
+                ul.style.transform = 'translateX(100vw)';
+            }
+            
+            // Ejecutamos el metodo que realiza la transicion del elemento: 
+            setTimeout(transition, 50);
+        },
+
+        // Metodo para no mostrar el menu de navegacion: 
+        exitMenu(){
+
+            // Seleccionamos la clase del elemento 'ul':
+            const ul = document.querySelector('#ul');
+
+            // Seleccionamos la clase del elemento 'ul':
+            ul.style.transform = 'translateX(0vw)';
+
+            // Metodo para deshabilitar el display del elemento:  
+            function  hiddenDisplay(){
+                // Desactivamos la visibilidad del elemento: 
+                ul.style.display = 'none';
+            }
+            
+            // Ejecutamos el metodo que deshabilita el display del elemento: 
+            setTimeout(hiddenDisplay, 500);
+
         }
     
     }
@@ -130,27 +162,41 @@ export default {
         height: 80%;
     }
     ul{
-        float: left;;
-        margin-top: 40%;
+        position: relative;
+        margin-top: 141%;
         width: 100vw;
-        height: 60vh;
+        height: 100vh;
+        margin-left: -225vw;
         display: none;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 0; 
         background-color: #130999; 
-        transform: translateX(200px);
-        transform:rotateX(200px)
+        transform: translateX(0vw);
+        transition: transform 0.5s;
     }
     li{
         border-bottom: 1px solid #fff;
         width: 100%;
-        height: 13%;
+        height: 10%;
         color: #fff;
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .exit{
+        justify-content: flex-end;
+    }
+    .exit button{
+        margin-right: 5%;
+        width: 12%;
+        height: 70%;
+        border: none;
+        border-radius: 100%;
+        background-color: red;
+        color: #fff;
+        text-align: center;
     }
     li .icon{
         margin-left:7%;
