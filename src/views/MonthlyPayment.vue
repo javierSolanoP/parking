@@ -112,96 +112,198 @@ export default {
 </script>
 
 <style scoped>
-section{
-    margin-left: 0;
-    width: 80vw;
-    height: 30vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.container{
-    border-radius: 0;
-    border-bottom: 0.20rem  solid #130999;
-}
-article{
-    width: 90%;
-    height: 70%;
-    display: flex;
-    justify-content: space-between;
-}
-form{
-    width: 50%;
-    height: 100%;
-    border: 0.15rem  solid #ced4da;
-    border-radius: 1rem;
-}
-label{
-    width: 90%;
-    height: 30%;
-    text-align: center;
-    text-justify: center;
-    font-size: 180%;
+/* Para moviles */
+@media screen and (max-width: 500px){
+    section{
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .container{
+        margin-top: 0%;
+        width: 100vw;
+        height: 60vh;
+        align-items: center;
+        border-radius: 0;
+        border-bottom: 0.20rem  solid #130999;
+    }
+    article{
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    form{
+        width: 100%;
+        height: 40%;
+        border: 0.15rem  solid #ced4da;
+        border-radius: 1rem;
+    }
+    label{
+        width: 90%;
+        height: 30%;
+        text-align: center;
+        text-justify: center;
+        font-size: 180%;
 
+    }
+    .search{
+        width: 90%;
+        height: 30%;
+        display: flex;
+        justify-content: space-between;
+    }
+    input[type="text"]{
+        width: 50%;
+        height: 100%;
+        background-color: #fff;
+        border-bottom: 0.20rem  solid #130999;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        font-size: 150%;
+    }
+    input[type="text"]:focus{
+        color: #212529;
+        background-color: #fff;
+        border: 0;
+        border-color: none;
+        outline: #fff;
+        box-shadow:0;
+        border-bottom: 0.20rem  solid #F04509;
+    }
+    input[type="submit"]{
+        width: 40%;
+        height: 100%;
+        font-size: 150%;
+    }
+    .container-option{
+        width: 100%;
+        height: 50%; 
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .option{
+        width: 30%;
+        height: 60%;
+        background-color: thistle;
+        border-radius: 1rem;
+        border: 0;
+        box-shadow: 0.5rem 0.5rem 0.5rem rgb(78, 77, 77);
+    }
+    .option:hover{
+        transform: scale(110%, 110%);
+        cursor: pointer;
+    }
+    .option img{
+        width: 90%;
+        height: 90%;
+    }
+    .option.add{
+        background-color: #F04509;
+    }
+    .option.update{
+        margin-left: 20%;
+        background-color: orange;
+    }
 }
-.search{
-    width: 90%;
-    height: 30%;
-    display: flex;
-    justify-content: space-between;
-}
-input[type="text"]{
-    width: 50%;
-    height: 100%;
-    background-color: #fff;
-    border-bottom: 0.20rem  solid #130999;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-radius: 0;
-    font-size: 150%;
-}
-input[type="text"]:focus{
-    color: #212529;
-    background-color: #fff;
-    border: 0;
-    border-color: none;
-    outline: #fff;
-    box-shadow:0;
-    border-bottom: 0.20rem  solid #F04509;
-}
-input[type="submit"]{
-    width: 40%;
-    height: 100%;
-    font-size: 150%;
-}
-.container-option{
-    width: 40%;
-    height: 100%; 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.option{
-    width: 40%;
-    height: 80%;
-    background-color: thistle;
-    border-radius: 1rem;
-    border: 0;
-    box-shadow: 0.5rem 0.5rem 0.5rem rgb(78, 77, 77);
-}
-.option:hover{
-    transform: scale(110%, 110%);
-    cursor: pointer;
-}
-.option img{
-    width: 90%;
-    height: 90%;
-}
-.option.add{
-    background-color: #F04509;
-}
-.option.update{
-    background-color: orange;
+
+/* Para ordenadores pequeños */
+@media screen and (min-width: 1232px){
+    section{
+        margin-left: 0;
+        width: 80vw;
+        height: 30vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .container{
+        border-radius: 0;
+        border-bottom: 0.20rem  solid #130999;
+    }
+    article{
+        width: 90%;
+        height: 70%;
+        display: flex;
+        justify-content: space-between;
+    }
+    form{
+        width: 50%;
+        height: 100%;
+        border: 0.15rem  solid #ced4da;
+        border-radius: 1rem;
+    }
+    label{
+        width: 90%;
+        height: 30%;
+        text-align: center;
+        text-justify: center;
+        font-size: 180%;
+
+    }
+    .search{
+        width: 90%;
+        height: 30%;
+        display: flex;
+        justify-content: space-between;
+    }
+    input[type="text"]{
+        width: 50%;
+        height: 100%;
+        background-color: #fff;
+        border-bottom: 0.20rem  solid #130999;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        font-size: 150%;
+    }
+    input[type="text"]:focus{
+        color: #212529;
+        background-color: #fff;
+        border: 0;
+        border-color: none;
+        outline: #fff;
+        box-shadow:0;
+        border-bottom: 0.20rem  solid #F04509;
+    }
+    input[type="submit"]{
+        width: 40%;
+        height: 100%;
+        font-size: 150%;
+    }
+    .container-option{
+        width: 40%;
+        height: 100%; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .option{
+        width: 40%;
+        height: 80%;
+        background-color: thistle;
+        border-radius: 1rem;
+        border: 0;
+        box-shadow: 0.5rem 0.5rem 0.5rem rgb(78, 77, 77);
+    }
+    .option:hover{
+        transform: scale(110%, 110%);
+        cursor: pointer;
+    }
+    .option img{
+        width: 90%;
+        height: 90%;
+    }
+    .option.add{
+        background-color: #F04509;
+    }
+    .option.update{
+        background-color: orange;
+    }
 }
 </style>

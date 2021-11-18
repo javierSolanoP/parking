@@ -2,30 +2,30 @@
     <div id="dashboard">
         <aside>
             <div class="container-avatar">
-                <img src="man.PNG" alt="Avatar" class="avatar">
+                <img src="/man.PNG" alt="Avatar" class="avatar">
                 <br>
                 <p>Javier Solano</p>
             </div>
             <button class="menu" @click="showMenu">
-                <img src="menu.PNG" alt="Menú de navegación">
+                <img src="/menu.PNG" alt="Menú de navegación">
             </button>
             <ul id="ul">
                 <li class="exit">
                     <button @click="exitMenu">X</button>
                 </li>
                 <li>
-                    <img src="hour.PNG" alt="" class="icon">
-                    <router-link to="/">Horas</router-link>
+                     <img src="/hour.PNG" alt="" class="icon">
+                    <button @click="changeView" class="route-link">Horas</button>
                 </li>
                 <li>
-                    <img src="calendario.PNG" alt="" class="icon">
-                    <router-link to="/dashboard/mensualidades">Mensualidades</router-link>
+                    <img src="/calendario.PNG" alt="" class="icon">
+                    <button @click="changeView" class="route-link">Mensualidades</button>
                 </li>
                 <li></li>
                 <li></li>
             </ul>
             <button class="logout" @click="redirect">
-                <img src="salida.PNG" alt="Icono de cerrar sesión" class="icon">
+                <img src="/salida.PNG" alt="Icono de cerrar sesión" class="icon">
                 <p>Cerrar sesión</p>
             </button>
         </aside>
@@ -44,7 +44,8 @@ export default {
             dom: document.addEventListener('DOMContentLoaded', () => {
                     const access = document.querySelector('.access');
                     access.style.display = 'none';
-                })
+                }),
+            pathMonthlyPayment: '/dashboard/mensualidades'
         }
     },
 
@@ -97,6 +98,17 @@ export default {
             
             // Ejecutamos el metodo que deshabilita el display del elemento: 
             setTimeout(hiddenDisplay, 500);
+
+        },
+
+        // Metodo para habilitar la visibilidad de una vista: 
+        changeView(){
+
+            // Ejecutamos el metodo que deshabilita el menu de navegacion: 
+            this.exitMenu();
+
+            // Redireccionamos a la vista que se solicita: 
+            location.href = this.pathMonthlyPayment; 
 
         }
     }
@@ -217,7 +229,7 @@ export default {
         height: 70%;
         border-radius: 100%;
     }
-    li a{
+    li .route-link{
         width: 75%;
         height: 40%;
         font-size: 150%;
@@ -225,8 +237,9 @@ export default {
         border: none;
         cursor: pointer;
         text-decoration: none;
+        background-color: transparent;
     }
-    li a:hover{
+    li .route-link:hover{
         color: #F04509
     }
     .logout{
@@ -304,6 +317,19 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    li .route-link{
+        width: 75%;
+        height: 40%;
+        font-size: 150%;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        background-color: transparent;
+    }
+    li .route-link:hover{
+        color: #F04509
     }
     .exit{
         display: none;

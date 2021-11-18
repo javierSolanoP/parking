@@ -7,15 +7,17 @@
                         <p class="data"><strong>ESTADO</strong></p>
                         <p class="data success">Paga</p>
                     </div>
-                    <div class="option button">
-                       <button class="pay" @click="openModalPay">
-                            <img src="/pagar.png" alt="Icono de pagar mensualidad">
-                       </button>
-                    </div>
-                    <div class="option button">
-                        <button class="renew" @click="openModalRenew">
-                            <img src="/renovar.png" alt="Icono de renovar mensualidad">
-                        </button>
+                    <div class="container-option-button">
+                        <div class="option button">
+                            <button class="pay" @click="openModalPay">
+                                    <img src="/pagar.png" alt="Icono de pagar mensualidad">
+                            </button>
+                        </div>
+                        <div class="option button">
+                            <button class="renew" @click="openModalRenew">
+                                <img src="/renovar.png" alt="Icono de renovar mensualidad">
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="container">
@@ -34,11 +36,11 @@
                 </div>
                 <div class="container">
                     <div class="date">
-                        <p class="data"><strong>FECHA DE INICIO</strong></p>
+                        <p class="data"><strong class="date-strong">FECHA DE INICIO</strong></p>
                         <p class="data content">16/11/2021</p>
                     </div>
                     <div class="date">
-                        <p class="data"><strong>FECHA DE CADUCIDAD</strong></p>
+                        <p class="data"><strong class="date-strong">FECHA DE CADUCIDAD</strong></p>
                         <p class="data content">16/12/2021</p>
                     </div>
                 </div>
@@ -135,221 +137,468 @@ export default {
 }
 </script>
 <style scoped>
-section{
-    margin-left: 0;
-    width: 80vw;
-    height: 69.6vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-article{
-    width: 90%;
-    height: 85%;
-    border: 0.15rem  solid #ced4da;
-    border-radius: 1rem;
-    box-shadow: 0.5rem 0.5rem 1rem rgb(54, 54, 54);
+/* Para moviles */
+@media screen and (max-width: 500px){
+    section{
+        margin-left: 0;
+        margin-top: 0;
+        width: 100vw;
+        height: 200vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    article{
+        width: 90%;
+        height: 90%;
+        border: 0.15rem  solid #ced4da;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        box-shadow: 0.5rem 0.5rem 1rem rgb(54, 54, 54);
+    }
+
+    article .container{
+        width: 90%;
+        height: 33.33%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Opciones a realizar */
+    .container .option{
+        width: 100%;
+        height: 33.33%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .container .container-option-button {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .option .data{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 140%;
+        border-radius: 1rem;
+    }
+    .data.success{
+        background-color: rgb(54, 230, 54);
+        width: 90%;
+        height: 30%;
+        font-weight: normal;  
+        font-style: normal;  
+    }
+    .data.fail{
+        background-color: rgb(219, 10, 10);
+        width: 90%;
+        height: 30%;
+        color: #fff;
+        font-weight: normal;  
+        font-style: normal;
+    }
+    .option .data strong{
+        border-bottom: 0;
+    }
+    .container-option-button .option.button {
+        width: 100%;
+        height: 50%;
+        flex-direction: row;
+    }
+    .option.button button{
+        background-color: rgb(221, 221, 19);
+        width: 60%;
+        height: 90%;
+        cursor: pointer;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0.5rem 0.5rem 0.5rem rgb(78, 77, 77);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .option.button button:hover{
+        transform: scale(110%, 110%);
+    }
+    button img{
+        width: 70%;
+        height: 70%;
+    }
+
+    .option.button .pay{
+        background-color: rgb(216, 216, 16);
+    }
+
+    .option.button .renew{
+        background-color: rgb(54, 230, 54);
+    }
+    /* Datos del dueño del vehiculo */
+    .container .owner{
+        width: 33%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .owner .data{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 120%; 
+    }
+    .data strong{
+        width: 100%;
+        height: 40%;
+        border-bottom: 0.20rem  solid #130999;
+    }
+    .data.content{
+        font-size: 150%;
+    }
+
+    /* Fechas de la mensualidad registrada */
+    .container .date{
+        width: 50%;
+        height: 100%;
+    }
+
+    .date .data{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 150%;
+    }
+
+    strong {
+        font-size: 100%;
+    }
+    /* Modal */
+    .container-modal{
+        position: relative;
+        margin-top: -87%;
+        margin-left: -30%;
+        width: 130%;
+        height: 101vh;
+        background-color: rgba(0, 0, 0, 0.5);;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-modal.pay{
+        visibility: hidden;
+    }
+    .container-modal.renew{
+        visibility: hidden;
+    }
+    .container-modal .modal{
+        width: 50%;
+        height: 30%;
+        margin-left: 4%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0.5rem 0.5rem 1rem rgb(54, 54, 54);
+    }
+    .modal .head{
+        width: 90%;
+        height: 20%;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .head.pay{
+        border-bottom: 0.25rem solid rgb(216, 216, 16);
+    }
+    .head.renew{
+        border-bottom: 0.25rem solid rgb(54, 230, 54);
+    }
+    .modal .body{
+        width: 90%;
+        height: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .body .container-button{
+        width: 30%;
+        height: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .container-button .option{
+        width: 40%;
+        height: 50%;
+        border: none;
+        border-radius: 1rem;
+        cursor: pointer;
+        font-size: 120%;
+    }
+
+    .option.yes.pay{
+        background-color: rgb(216, 216, 16);;
+    }
+
+    .option.yes.renew{
+        background-color: rgb(54, 230, 54);
+    }
+
+    .option.no{
+        background-color: red;
+        color: #000;
+    }
 }
 
-article .container{
-    width: 100%;
-    height: 33.33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* Para ordenadores pequeños */
+@media screen and (min-width: 1232px){
+    section{
+        margin-left: 0;
+        width: 80vw;
+        height: 69.6vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    article{
+        width: 90%;
+        height: 85%;
+        border: 0.15rem  solid #ced4da;
+        border-radius: 1rem;
+        box-shadow: 0.5rem 0.5rem 1rem rgb(54, 54, 54);
+    }
 
-/* Opciones a realizar */
-.container .option{
-    width: 33%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.option .data{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 140%;
-    border-radius: 1rem;
-}
-.data.success{
-    background-color: rgb(54, 230, 54);
-    width: 90%;
-    height: 30%;
-    font-weight: normal;  
-    font-style: normal;  
-}
-.data.fail{
-    background-color: rgb(219, 10, 10);
-    width: 90%;
-    height: 30%;
-    color: #fff;
-    font-weight: normal;  
-    font-style: normal;
-}
-.option .data strong{
-    border-bottom: 0;
-}
-.option.button {
-    flex-direction: row
-}
-.option.button button{
-    background-color: rgb(221, 221, 19);
-    width: 40%;
-    height: 60%;
-    cursor: pointer;
-    border: none;
-    border-radius: 1rem;
-    box-shadow: 0.5rem 0.5rem 0.5rem rgb(78, 77, 77);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.option.button button:hover{
-    transform: scale(110%, 110%);
-}
-button img{
-    width: 70%;
-    height: 70%;
-}
+    article .container{
+        width: 100%;
+        height: 33.33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.option.button .pay{
-    background-color: rgb(216, 216, 16);
-}
+    /* Opciones a realizar */
+    .container .option{
+        width: 33%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .option .data{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 140%;
+        border-radius: 1rem;
+    }
+    .data.success{
+        background-color: rgb(54, 230, 54);
+        width: 90%;
+        height: 30%;
+        font-weight: normal;  
+        font-style: normal;  
+    }
+    .data.fail{
+        background-color: rgb(219, 10, 10);
+        width: 90%;
+        height: 30%;
+        color: #fff;
+        font-weight: normal;  
+        font-style: normal;
+    }
+    .option .data strong{
+        border-bottom: 0;
+    }
+    .option.button {
+        flex-direction: row
+    }
+    .option.button button{
+        background-color: rgb(221, 221, 19);
+        width: 40%;
+        height: 60%;
+        cursor: pointer;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0.5rem 0.5rem 0.5rem rgb(78, 77, 77);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .option.button button:hover{
+        transform: scale(110%, 110%);
+    }
+    button img{
+        width: 70%;
+        height: 70%;
+    }
 
-.option.button .renew{
-    background-color: rgb(54, 230, 54);
-}
-/* Datos del dueño del vehiculo */
-.container .owner{
-    width: 33%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.owner .data{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 140%; 
-}
-.data strong{
-    width: 90%;
-    height: 40%;
-    border-bottom: 0.20rem  solid #130999;
-}
-.data.content{
-    font-size: 180%;
-}
+    .option.button .pay{
+        background-color: rgb(216, 216, 16);
+    }
 
-/* Fechas de la mensualidad registrada */
-.container .date{
-    width: 50%;
-    height: 100%;
-}
+    .option.button .renew{
+        background-color: rgb(54, 230, 54);
+    }
+    /* Datos del dueño del vehiculo */
+    .container .owner{
+        width: 33%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .owner .data{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 140%; 
+    }
+    .data strong{
+        width: 90%;
+        height: 40%;
+        border-bottom: 0.20rem  solid #130999;
+    }
+    .data.content{
+        font-size: 180%;
+    }
 
-.date .data{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 140%;
-}
+    /* Fechas de la mensualidad registrada */
+    .container .date{
+        width: 50%;
+        height: 100%;
+    }
 
-/* Modal */
-.container-modal{
-    position: relative;
-    margin-top: -87%;
-    margin-left: -30%;
-    width: 130%;
-    height: 101vh;
-    background-color: rgba(0, 0, 0, 0.5);;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.container-modal.pay{
-    visibility: hidden;
-}
-.container-modal.renew{
-    visibility: hidden;
-}
-.container-modal .modal{
-    width: 50%;
-    height: 30%;
-    margin-left: 4%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border: none;
-    border-radius: 1rem;
-    box-shadow: 0.5rem 0.5rem 1rem rgb(54, 54, 54);
-}
-.modal .head{
-    width: 90%;
-    height: 20%;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.head.pay{
-    border-bottom: 0.25rem solid rgb(216, 216, 16);
-}
-.head.renew{
-    border-bottom: 0.25rem solid rgb(54, 230, 54);
-}
-.modal .body{
-    width: 90%;
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    .date .data{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 110%;
+    }
 
-.body .container-button{
-    width: 30%;
-    height: 50%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .data .data-strong{
+        font-size: 110%;
+    }
 
-.container-button .option{
-    width: 40%;
-    height: 50%;
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-    font-size: 120%;
-}
+    /* Modal */
+    .container-modal{
+        position: relative;
+        margin-top: -87%;
+        margin-left: -30%;
+        width: 130%;
+        height: 101vh;
+        background-color: rgba(0, 0, 0, 0.5);;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-modal.pay{
+        visibility: hidden;
+    }
+    .container-modal.renew{
+        visibility: hidden;
+    }
+    .container-modal .modal{
+        width: 50%;
+        height: 30%;
+        margin-left: 4%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0.5rem 0.5rem 1rem rgb(54, 54, 54);
+    }
+    .modal .head{
+        width: 90%;
+        height: 20%;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .head.pay{
+        border-bottom: 0.25rem solid rgb(216, 216, 16);
+    }
+    .head.renew{
+        border-bottom: 0.25rem solid rgb(54, 230, 54);
+    }
+    .modal .body{
+        width: 90%;
+        height: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-.option.yes.pay{
-    background-color: rgb(216, 216, 16);;
-}
+    .body .container-button{
+        width: 30%;
+        height: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-.option.yes.renew{
-    background-color: rgb(54, 230, 54);
-}
+    .container-button .option{
+        width: 40%;
+        height: 50%;
+        border: none;
+        border-radius: 1rem;
+        cursor: pointer;
+        font-size: 120%;
+    }
 
-.option.no{
-    background-color: red;
-    color: #000;
+    .option.yes.pay{
+        background-color: rgb(216, 216, 16);;
+    }
+
+    .option.yes.renew{
+        background-color: rgb(54, 230, 54);
+    }
+
+    .option.no{
+        background-color: red;
+        color: #000;
+    }
 }
 </style>
