@@ -413,6 +413,13 @@ export default {
         justify-content: center;
         align-items: center;
     }
+    .container .container-option-button {
+        width: 66%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .option .data{
         width: 100%;
         height: 50%;
@@ -445,7 +452,7 @@ export default {
     }
     .option.button button{
         background-color: rgb(221, 221, 19);
-        width: 40%;
+        width: 50%;
         height: 60%;
         cursor: pointer;
         border: none;
@@ -464,10 +471,12 @@ export default {
     }
 
     .option.button .pay{
+        margin-left: -50%;
         background-color: rgb(216, 216, 16);
     }
 
     .option.button .renew{
+        margin-left: 50%;
         background-color: rgb(54, 230, 54);
     }
     /* Datos del dueño del vehiculo */
