@@ -82,6 +82,7 @@ export default {
 /* Para moviles */
 @media screen  and (max-width: 500px){
   .access{
+    margin-top: -0%;
     width: 100%;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -118,9 +119,9 @@ export default {
   /* Formulario */
   section{
     position: relative;
-    margin-top: -40%;
+    margin-top: -70%;
     width: 80%;
-    height: 60vh;
+    height: 70vh;
     border-radius: 0.25rem;
     border: none;
     background-color: transparent;

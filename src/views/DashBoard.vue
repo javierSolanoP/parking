@@ -64,16 +64,25 @@ export default {
         // Metodo para mostrar el menu de navegacion: 
         showMenu(){
 
-            // Seleccionamos la clase del elemento 'ul':
-            const ul = document.querySelector('#ul');
-            
+            // Seleccionamos el elemento 'ul':
+            const ul = document.querySelector('#ul'),
 
-            // Activamos la visibilidad del elemento: 
+                // Seleccionamos los elementos que deshabilitaremos: 
+                  viewMonthlyPayment = document.querySelector('#viewMonthlyPayment'),
+                  addMonthlyPayment = document.querySelector('#addMonthlyPayment'),
+                  updateMonthlyPayment = document.querySelector('#updateMonthlyPayment');
+
+            // Habilitamos la visibilidad del elemento: 
             ul.style.display = 'flex';
+            
+            // Deshabilitamos la visibilidad de los demas elementos: 
+            viewMonthlyPayment.style.display = 'none';
+            addMonthlyPayment.style.display = 'none';
+            updateMonthlyPayment.style.display = 'none';
 
             // Metodo para para realizar la transicion del elemento:  
             function  transition(){
-                // Seleccionamos la clase del elemento 'ul':
+                // Modificamos el estilo del elemento 'ul':
                 ul.style.transform = 'translateX(100vw)';
             }
             
@@ -84,16 +93,28 @@ export default {
         // Metodo para no mostrar el menu de navegacion: 
         exitMenu(){
 
-            // Seleccionamos la clase del elemento 'ul':
-            const ul = document.querySelector('#ul');
+            // Seleccionamos el elemento 'ul':
+            const ul = document.querySelector('#ul'),
 
-            // Seleccionamos la clase del elemento 'ul':
+                // Seleccionamos los elementos que habilitaremos: 
+                  viewMonthlyPayment = document.querySelector('#viewMonthlyPayment'),
+                  addMonthlyPayment = document.querySelector('#addMonthlyPayment'),
+                  updateMonthlyPayment = document.querySelector('#updateMonthlyPayment');
+
+
+            // Modificamos el estilo del elemento 'ul':
             ul.style.transform = 'translateX(0vw)';
 
             // Metodo para deshabilitar el display del elemento:  
             function  hiddenDisplay(){
-                // Desactivamos la visibilidad del elemento: 
+
+                // Deshabilitamos la visibilidad del elemento: 
                 ul.style.display = 'none';
+
+                // Habilitamos la visibilidad de los demas elementos: 
+                viewMonthlyPayment.style.display = 'flex';
+                addMonthlyPayment.style.display = 'flex';
+                updateMonthlyPayment.style.display = 'flex';
             }
             
             // Ejecutamos el metodo que deshabilita el display del elemento: 

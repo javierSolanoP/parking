@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section>
+        <section id="updateMonthlyPayment">
             <form @submit.prevent="addMonthlyPayment">
                 <div class="container-left">
                     <div class="container-input">
@@ -158,7 +158,7 @@ export default {
     form h1{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid #F04509;
+        border-bottom: 0.20rem  solid orange;
     }
     .input{
         width: 50%;
@@ -182,7 +182,7 @@ export default {
     form h2{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid #F04509;
+        border-bottom: 0.20rem  solid orange;
     }
     .input select{
         width: 90%;
@@ -203,7 +203,7 @@ export default {
         height: 40%;
         font-size: 120%;
         border-radius: 10rem;
-        background-color: #F04509;;
+        background-color: orange;
     }
     .input input[type="submit"]:hover{
         background-color: #130999;
@@ -283,7 +283,7 @@ export default {
     form h1{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid #F04509;
+        border-bottom: 0.20rem  solid orange;
     }
     .input{
         width: 50%;
@@ -307,7 +307,7 @@ export default {
     form h2{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid #F04509;
+        border-bottom: 0.20rem  solid orange;
     }
     .input select{
         width: 90%;
@@ -328,7 +328,7 @@ export default {
         height: 50%;
         font-size: 120%;
         border-radius: 10rem;
-        background-color: #F04509;;
+        background-color: orange;
     }
     .input input[type="submit"]:hover{
         background-color: #130999;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="container">
+        <section class="container" id="viewMonthlyPayment">
             <article>
                 <form @submit.prevent="queryMonthlyPayment">
                     <label for="monthly_payment"><strong>PLACA</strong></label>

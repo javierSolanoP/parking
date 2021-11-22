@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section>
+        <section id="addMonthlyPayment">
             <form @submit.prevent="addMonthlyPayment">
                 <div class="container-left">
                     <div class="container-input">
@@ -38,16 +38,16 @@
                     <br>
                     <h2><strong>INFORMACIÓN DEL VEHICULO</strong></h2>
                     <div class="container-input">
-                            <div class="input plate">
-                                <!-- <label for="placa">Placa</label> -->
-                                <input type="text" name="card" v-model="card" required placeholder=" placa...">
-                            </div>
-                            <div class="input plate">
-                                <label for="type_of_vehicle">Tipo de vehiculo</label>
-                                <select name="type_of_vehicle" v-model="type_of_vehicle">
-                                    <option value="0">...</option>
-                                </select>
-                            </div>
+                        <div class="input plate">
+                            <!-- <label for="placa">Placa</label> -->
+                            <input type="text" name="card" v-model="card" required placeholder=" placa...">
+                        </div>
+                        <div class="input plate">
+                            <label for="type_of_vehicle">Tipo de vehiculo</label>
+                            <select name="type_of_vehicle" v-model="type_of_vehicle">
+                                <option value="0">...</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="container-input">
                         <div class="input plate">
