@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section>
+        <section id="viewMonthlyPayment">
             <article>
                 <div class="container">
                     <div class="option">

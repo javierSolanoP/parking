@@ -43,8 +43,11 @@ export default {
 
     verifyAccount(user, password){
       if((user === 'javiers') && (password === '123')){
+
+
         this.denied = false;
         location.href = 'dashboard'
+
       }else{
         alert("Access denied!");
       }

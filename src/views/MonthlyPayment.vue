@@ -1,12 +1,12 @@
 <template>
     <div>
-        <section class="container" id="viewMonthlyPayment">
+        <section class="container" id="monthlyPayment">
             <article>
                 <form @submit.prevent="queryMonthlyPayment">
                     <label for="monthly_payment"><strong>PLACA</strong></label>
                     <br>
                     <div class="search">
-                        <input type="text" name="monthly_payment" v-model="monthly_payment" placeholder=" Placa..." required>
+                        <input type="text" v-model="monthly_payment" placeholder=" Placa..." required>
                         <input type="submit" value="Buscar">
                     </div>
                 </form>
@@ -42,6 +42,7 @@ export default {
 
     data: function () {
         return {
+            monthly_payment: '',
             view: false,
             add: false,
             update: false

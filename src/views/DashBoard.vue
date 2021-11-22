@@ -57,8 +57,10 @@ export default {
 
         // Metodo para redirigir a la vista de inicio de sesión:  
         redirect(){
+
             // Redireccionamos a la vista: 
             location.href = '/'
+
         },
 
         // Metodo para mostrar el menu de navegacion: 
@@ -67,18 +69,28 @@ export default {
             // Seleccionamos el elemento 'ul':
             const ul = document.querySelector('#ul'),
 
-                // Seleccionamos los elementos que deshabilitaremos: 
-                  viewMonthlyPayment = document.querySelector('#viewMonthlyPayment'),
-                  addMonthlyPayment = document.querySelector('#addMonthlyPayment'),
-                  updateMonthlyPayment = document.querySelector('#updateMonthlyPayment');
+                // Seleccionamos un elemento de la vista hija, para saber si esta habilitada: 
+                  monthlyPayment = document.querySelector('#monthlyPayment');
 
-            // Habilitamos la visibilidad del elemento: 
+            // Si esta habilitada, entonces seleccionamos los demas elementos de la vista hija:  
+            if(monthlyPayment){
+                
+                // Seleccionamos los elementos que deshabilitaremos:
+                const monthlyPayment = document.querySelector('#monthlyPayment'), 
+                    viewMonthlyPayment = document.querySelector('#viewMonthlyPayment'),
+                    addMonthlyPayment = document.querySelector('#addMonthlyPayment'),
+                    updateMonthlyPayment = document.querySelector('#updateMonthlyPayment');
+
+                // Deshabilitamos la visibilidad de los demas elementos: 
+                monthlyPayment.style.display = 'none';
+                viewMonthlyPayment.style.display = 'none';
+                addMonthlyPayment.style.display = 'none';
+                updateMonthlyPayment.style.display = 'none';
+
+            }          
+
+            // Habilitamos la visibilidad del elemento 'ul': 
             ul.style.display = 'flex';
-            
-            // Deshabilitamos la visibilidad de los demas elementos: 
-            viewMonthlyPayment.style.display = 'none';
-            addMonthlyPayment.style.display = 'none';
-            updateMonthlyPayment.style.display = 'none';
 
             // Metodo para para realizar la transicion del elemento:  
             function  transition(){
@@ -94,13 +106,7 @@ export default {
         exitMenu(){
 
             // Seleccionamos el elemento 'ul':
-            const ul = document.querySelector('#ul'),
-
-                // Seleccionamos los elementos que habilitaremos: 
-                  viewMonthlyPayment = document.querySelector('#viewMonthlyPayment'),
-                  addMonthlyPayment = document.querySelector('#addMonthlyPayment'),
-                  updateMonthlyPayment = document.querySelector('#updateMonthlyPayment');
-
+            const ul = document.querySelector('#ul');
 
             // Modificamos el estilo del elemento 'ul':
             ul.style.transform = 'translateX(0vw)';
@@ -111,10 +117,25 @@ export default {
                 // Deshabilitamos la visibilidad del elemento: 
                 ul.style.display = 'none';
 
-                // Habilitamos la visibilidad de los demas elementos: 
-                viewMonthlyPayment.style.display = 'flex';
-                addMonthlyPayment.style.display = 'flex';
-                updateMonthlyPayment.style.display = 'flex';
+                // Seleccionamos un elemento de la vista hija, para saber si esta habilitada: 
+                const  monthlyPayment = document.querySelector('#monthlyPayment');
+
+                // Si esta habilitada, entonces seleccionamos los demas elementos de la vista hija:  
+                if(monthlyPayment){
+                    
+                    // Seleccionamos los elementos que deshabilitaremos:
+                    const monthlyPayment = document.querySelector('#monthlyPayment'), 
+                        viewMonthlyPayment = document.querySelector('#viewMonthlyPayment'),
+                        addMonthlyPayment = document.querySelector('#addMonthlyPayment'),
+                        updateMonthlyPayment = document.querySelector('#updateMonthlyPayment');
+
+                    // Deshabilitamos la visibilidad de los demas elementos: 
+                    monthlyPayment.style.display = 'flex';
+                    viewMonthlyPayment.style.display = 'flex';
+                    addMonthlyPayment.style.display = 'flex';
+                    updateMonthlyPayment.style.display = 'flex';
+
+                }          
             }
             
             // Ejecutamos el metodo que deshabilita el display del elemento: 
