@@ -527,8 +527,8 @@ export default {
 
     /* Modal */
     .container-modal{
-        position: relative;
-        margin-top: -87%;
+        position: fixed;
+        top: 0;
         margin-left: -30%;
         width: 130%;
         height: 101vh;
@@ -546,7 +546,6 @@ export default {
     .container-modal .modal{
         width: 50%;
         height: 30%;
-        margin-left: 4%;
         display: flex;
         flex-direction: column;
         align-items: center;
