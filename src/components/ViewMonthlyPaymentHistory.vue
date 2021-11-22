@@ -290,13 +290,13 @@ export default {
     strong {
         font-size: 100%;
     }
+
     /* Modal */
     .container-modal{
-        position: relative;
-        margin-top: -87%;
-        margin-left: -30%;
-        width: 130%;
-        height: 101vh;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 200vh;
         background-color: rgba(0, 0, 0, 0.5);;
         display: flex;
         justify-content: center;
@@ -309,9 +309,10 @@ export default {
         visibility: hidden;
     }
     .container-modal .modal{
-        width: 50%;
-        height: 30%;
-        margin-left: 4%;
+        top: 40;
+        width: 90%;
+        height: 20%;
+        margin-top: -200%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -323,7 +324,7 @@ export default {
     }
     .modal .head{
         width: 90%;
-        height: 20%;
+        height: 30%;
         border-top: none;
         border-left: none;
         border-right: none;
@@ -338,7 +339,7 @@ export default {
         border-bottom: 0.25rem solid rgb(54, 230, 54);
     }
     .modal .body{
-        width: 90%;
+        width: 70%;
         height: 75%;
         display: flex;
         flex-direction: column;
@@ -347,8 +348,8 @@ export default {
     }
 
     .body .container-button{
-        width: 30%;
-        height: 50%;
+        width: 40%;
+        height: 40%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -360,7 +361,7 @@ export default {
         border: none;
         border-radius: 1rem;
         cursor: pointer;
-        font-size: 120%;
+        font-size: 110%;
     }
 
     .option.yes.pay{
