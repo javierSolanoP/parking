@@ -4,35 +4,35 @@
             <form @submit.prevent="addMonthlyPayment">
                 <div class="container-left">
                     <div class="container-input">
-                        <label for="first_date" class="date">Fecha de inicio</label>
-                        <input type="date" name="first_date" v-model="first_date">
+                        <label for="dateStart" class="date">Fecha de inicio</label>
+                        <input type="date" name="dateStart" v-model="datos.dateStart">
                     </div>
-                    <div class="container-input">
+                    <!-- <div class="container-input">
                         <label for="finish_date" class="date">Fecha de caducidad</label>
                         <input type="date" name="finish_date" v-model="finish_date">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="container-right">
                     <h1><strong>INFORMACIÓN DEL DUEÑO</strong></h1>
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="cedula">Cedula</label> -->
-                                <input type="text" name="identification" v-model="identification" required placeholder=" cedula...">
+                                <input type="text" name="dni" v-model="datos.dni" required placeholder=" Cedula...">
                             </div>
                             <div class="input">
                                 <!-- <label for="celular">Celular</label> -->
-                                <input type="text" name="telephone" v-model="telephone" required placeholder=" celular...">
+                                <input type="text" name="telephone" v-model="datos.telephone" required placeholder=" Celular...">
                             </div>
                     </div>
                     <br>
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="nombre">Nombre</label> -->
-                                <input type="text" name="name" v-model="name" required placeholder=" nombre...">
+                                <input type="text" name="name" v-model="datos.name" required placeholder=" Nombre...">
                             </div>
                             <div class="input">
                                 <!-- <label for="apellido">Apellido</label> -->
-                                <input type="text" name="last_name" v-model="last_name" required placeholder=" apellido...">
+                                <input type="text" name="lastName" v-model="datos.lastName" required placeholder=" Apellido...">
                             </div>
                     </div>
                     <br>
@@ -40,24 +40,24 @@
                     <div class="container-input">
                         <div class="input plate">
                             <!-- <label for="placa">Placa</label> -->
-                            <input type="text" name="card" v-model="card" required placeholder=" placa...">
+                            <input class="uppercase" maxlength="6" type="text" name="plate" v-model="datos.plate" required placeholder=" Placa...">
                         </div>
-                        <div class="input plate">
-                            <label for="type_of_vehicle">Tipo de vehiculo</label>
-                            <select name="type_of_vehicle" v-model="type_of_vehicle">
-                                <option value="0">...</option>
+                        <div class="input ">
+                            <!-- <label for="type_of_vehicle">Tipo de vehiculo</label> -->
+                            <select class="tariff" name="type_of_vehicle" v-model="datos.tariff" >
+                                <option value="test" label="Tipo de tarfia">aaaaa</option>
                             </select>
                         </div>
                     </div>
                     <div class="container-input">
-                        <div class="input plate">
+                        <!-- <div class="input plate">
                             <label for="type_of_vehicle">Tipo de tarifa</label>
                             <select name="type_of_vehicle" v-model="type_of_vehicle">
                                 <option value="0">...</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="input plate">
-                            <input type="submit" value="Registrar">
+                            <input v-on:click="test()" type="submit" value="Registrar">
                         </div>
                     </div>
                 </div>
@@ -72,22 +72,46 @@ export default {
 
     data: function () {
         return {
-            identification: '',
-            telephone: '',
-            name: '',
-            last_name: '',
-            card: '',
-            first_date: ''
+
+            datos:{
+                dni: '',
+                telephone: '',
+                name: '',
+                lastName: '',
+                plate: '',
+                dateStart: '',
+                tariff: ''
+            }
+            
         }
+    },
+
+    methods: {
+
+        test(){
+
+            console.log(this.datos)
+        }
+
     }
 
 }
 </script>
 
 <style scoped>
+/* variable global para el background-color */
+:root{
+    --bg-color: #265281;
+}
+
+/* Convertir texto a mayuyscula */
+.uppercase{
+    text-transform: uppercase;
+}
+
 
 /* Para moviles */
-@media screen and (max-width: 500px){
+/* @media screen and (max-width: 500px){
     section{
         margin-top: 0%;
         margin-left: 0;
@@ -106,7 +130,7 @@ export default {
         align-items: center;
         justify-content: center;
     }
-    /* Contenedor izquierdo */
+    Contenedor izquierdo
     .container-left{
         width: 100%;
         height: 40%;
@@ -140,7 +164,7 @@ export default {
         border-radius: 1rem;
     }
 
-    /* Contenedor derecho */
+    Contenedor derecho
     .container-right{
         width: 100%;
         height: 100%;
@@ -212,10 +236,10 @@ export default {
     .input input[type="submit"]:hover{
         background-color: #130999;
     }
-}
+} */
 
 /* Para ordenadores pequeños */
-@media screen and (min-width: 1232px){
+/* @media screen and (min-width: 1232px){ */
     section{
         margin-left: 0;
         width: 80vw;
@@ -226,7 +250,7 @@ export default {
     }
     form{
         width: 90%;
-        height: 80%;
+        height: 85%;
         border: 0.15rem  solid #ced4da;
         border-bottom-left-radius: 1rem;
         display: flex;
@@ -287,8 +311,21 @@ export default {
     form h1{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid #F04509;
+        border-bottom: 0.20rem  solid #2196F3;
     }
+
+    strong, .date{
+        color: #2196F3;
+    }
+
+    .tariff option{
+        background: red;
+        width: 90%; 
+        height: 80%;
+        /* font-size: 120%; */
+        /* /* border-radius: 1rem; */
+    }
+
     .input{
         width: 50%;
         height: 100%;
@@ -311,7 +348,7 @@ export default {
     form h2{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid #F04509;
+        border-bottom: 0.20rem  solid #2196F3;
     }
     .input select{
         width: 90%;
@@ -332,10 +369,14 @@ export default {
         height: 50%;
         font-size: 120%;
         border-radius: 10rem;
-        background-color: #F04509;;
+        background-color: #2196F3;
+        transition: .3s;
     }
     .input input[type="submit"]:hover{
-        background-color: #130999;
+        background-color: #fff;
+        border: 1px solid #2196F3;
+        color: #2196F3;
+        transition: .3s;
     }
-}
+/* } */
 </style>

@@ -4,7 +4,7 @@
             <article>
                 <div class="container">
                     <div class="option">
-                        <p class="data"><strong>ESTADO</strong></p>
+                        <!-- <p class="data"><strong>ESTADO</strong></p> -->
                         <p class="data success">Paga</p>
                     </div>
                     <div class="container-option-button">
@@ -40,7 +40,7 @@
                         <p class="data content">16/11/2021</p>
                     </div>
                     <div class="date">
-                        <p class="data"><strong class="date-strong">FECHA DE CADUCIDAD</strong></p>
+                        <p class="data"><strong class="date-strong">FECHA DE FIN</strong></p>
                         <p class="data content">16/12/2021</p>
                     </div>
                 </div>
@@ -56,8 +56,7 @@
                         <h2>¿Quiere cambiar el estado de la mensualidad, como mensualidad paga?</h2>
                         <div class="container-button">
                             <button @click="validateOption" class="option yes pay">Si</button>
-                            <button @click="cancelOptionPay" class="option no">No</button>
-                            
+                            <button @click="cancelOptionPay" class="option no">No</button> 
                         </div>
                     </div>
             </div>
@@ -137,6 +136,12 @@ export default {
 }
 </script>
 <style scoped>
+
+:root{
+    --bg-color: #265281;
+}
+
+
 /* Para moviles */
 @media screen and (max-width: 500px){
     section{
@@ -266,7 +271,7 @@ export default {
     .data strong{
         width: 100%;
         height: 40%;
-        border-bottom: 0.20rem  solid #130999;
+        border-bottom: 0.20rem  solid var(--bg-color);
     }
     .data.content{
         font-size: 150%;
@@ -500,7 +505,7 @@ export default {
     .data strong{
         width: 90%;
         height: 40%;
-        border-bottom: 0.20rem  solid #130999;
+        border-bottom: 0.20rem  solid var(--bg-color);
     }
     .data.content{
         font-size: 180%;

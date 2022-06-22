@@ -5,11 +5,13 @@
                 <div class="container-left">
                     <div class="container-input">
                         <label for="first_date" class="date">Fecha de inicio</label>
-                        <input type="date" name="first_date" v-model="first_date">
+                        <!-- <input type="date" name="first_date" v-model="first_date"> -->
+                        <p class="date-info">24-05-2022</p>
                     </div>
                     <div class="container-input">
                         <label for="finish_date" class="date">Fecha de caducidad</label>
-                        <input type="date" name="finish_date" v-model="finish_date">
+                        <!-- <input type="date" name="finish_date" v-model="finish_date"> -->
+                        <p class="date-info">23-06-2022</p>
                     </div>
                 </div>
                 <div class="container-right">
@@ -36,10 +38,10 @@
                             </div>
                     </div>
                     <br>
-                    <h2><strong>INFORMACIÓN DEL VEHICULO</strong></h2>
+                    <!-- <h2><strong>INFORMACIÓN DEL VEHICULO</strong></h2>
                     <div class="container-input">
                             <div class="input">
-                                <!-- <label for="placa">Placa</label> -->
+                                <label for="placa">Placa</label>
                                 <input type="text" name="card" v-model="card" placeholder=" placa...">
                             </div>
                             <div class="input">
@@ -48,18 +50,18 @@
                                     <option value="0">...</option>
                                 </select>
                             </div>
-                    </div>
+                    </div>-->
                     <div class="container-input">
-                        <div class="input">
+                        <!-- <div class="input">
                             <label for="type_of_vehicle">Tipo de tarifa</label>
                             <select name="type_of_vehicle" v-model="type_of_vehicle">
                                 <option value="0">...</option>
                             </select>
-                        </div>
-                        <div class="input">
+                        </div> -->
+                        <div class="input center">
                             <input type="submit" value="Actualizar">
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </form>
         </section>
@@ -85,8 +87,13 @@ export default {
 </script>
 
 <style scoped>
+
+/* variable global para el background-color */
+:root{
+    --bg-color: #073762;
+}
 /* Para moviles */
-@media screen and (max-width: 500px){
+/* @media screen and (max-width: 500px){
     section{
         margin-top: 0%;
         margin-left: 0;
@@ -105,7 +112,7 @@ export default {
         align-items: center;
         justify-content: center;
     }
-    /* Contenedor izquierdo */
+    Contenedor izquierdo
     .container-left{
         width: 100%;
         height: 40%;
@@ -139,7 +146,7 @@ export default {
         border-radius: 1rem;
     }
 
-    /* Contenedor derecho */
+    Contenedor derecho
     .container-right{
         width: 100%;
         height: 100%;
@@ -208,10 +215,10 @@ export default {
     .input input[type="submit"]:hover{
         background-color: #130999;
     }
-}
+} */
 
 /* Para ordenadores pequeños */
-@media screen and (min-width: 1232px){
+/* @media screen and (min-width: 1232px){ */
     section{
         margin-left: 0;
         width: 80vw;
@@ -222,7 +229,7 @@ export default {
     }
     form{
         width: 90%;
-        height: 80%;
+        height: 85%;
         border: 0.15rem  solid #ced4da;
         border-bottom-left-radius: 1rem;
         display: flex;
@@ -283,7 +290,7 @@ export default {
     form h1{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid orange;
+        border-bottom: 0.20rem  solid var(--bg-color);
     }
     .input{
         width: 50%;
@@ -303,11 +310,12 @@ export default {
         height: 40%;
         font-size: 120%;
         border-radius: 1rem;
+        text-transform: capitalize;
     }
     form h2{
         height: 10%;
         width: 90%;
-        border-bottom: 0.20rem  solid orange;
+        border-bottom: 0.20rem  solid var(--bg-color);
     }
     .input select{
         width: 90%;
@@ -328,10 +336,29 @@ export default {
         height: 50%;
         font-size: 120%;
         border-radius: 10rem;
-        background-color: orange;
+        background-color: var(--bg-color);
+        transition: .3s;
     }
+
+    .date{
+        margin-bottom: 15px;
+    }
+
+    .date-info{
+        color: var(--bg-color);
+        font-size: 25px;
+        text-decoration: underline;
+    }
+
+    .center{        
+        margin: 0 auto;
+    }
+
     .input input[type="submit"]:hover{
-        background-color: #130999;
+        background-color: #fff;
+        color: var(--bg-color);
+        border: 1px solid var(--bg-color);
+        transition: .3s;
     }
-}
+/* } */
 </style>

@@ -23,6 +23,8 @@
 
 <script>
 
+import axios from "axios";
+
 export default {
   name: 'App',
 
@@ -36,28 +38,68 @@ export default {
   methods: {
 
     access(){
-      let response = this.verifyAccount(this.user, this.password)
+      
+      // creamos el objeto con la informacion
+      let loginData = {
+        "userName":this.user,
+        "password":this.password
+      };
 
-      return response;
+      // realizamos la peticion
+      axios.post('http://127.0.0.1:8080/api/users/login/v1', loginData)
+        .then(function (response){
+
+          // almacenamos el nombre de usuario
+          let user = response.data.content.user.user;
+
+          // almacenamos los servicios que tiene ese usuario
+          let services = response.data.content.services
+
+          // convertimos a string los servicios
+          var test = JSON.stringify(Object.values(services));
+          
+          // creamos la palabra a buscar
+          var find = 'Mensualidades';
+
+          // buscamos la palabra
+          var searchValidate = test.indexOf(find)
+
+          // validamos si la encuentra
+          if(searchValidate >= 0){
+            
+            // almacenamos el nombre de usuario
+            localStorage.setItem('userName', user);
+
+            // redirigimos a la vista principal
+            location.href = 'dashboard';
+            
+          }else{
+            
+            // retornamos el error
+            alert('No tiene permmisos para acceder a este modulo')
+          }
+          
+        })
+        .catch(function (error){
+
+          // mostramos el mensaje de error
+          alert(error.response.data.error)
+
+        })
     },
 
-    verifyAccount(user, password){
-      if((user === 'javiers') && (password === '123')){
-
-
-        this.denied = false;
-        location.href = 'dashboard'
-
-      }else{
-        alert("Access denied!");
-      }
-    }
   }
 
 }
 </script>
 
 <style>
+
+:root{
+    --bg-color: #265281;
+}
+
+
 @font-face {  
   font-family: 'Roboto', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');  
@@ -83,7 +125,7 @@ export default {
 }
 
 /* Para moviles */
-@media screen  and (max-width: 500px){
+@media screen  and (max-width: 564px){
   .access{
     margin-top: -0%;
     width: 100%;
@@ -116,7 +158,7 @@ export default {
     margin-left: 0%;
     width: 100%;
     height: 50vh;
-    background-color: #130999;
+    background-color: var(--bg-color);
   }
 
   /* Formulario */
@@ -195,7 +237,7 @@ export default {
     position:relative;
     width: 80%;
     height: 15%;
-    background-color: #130999;
+    background-color: var(--bg-color);
     border-radius: 10rem;
     border: none;
     cursor: pointer;
@@ -208,7 +250,7 @@ export default {
 }
 
 /* Para ordenadores pequeños */
-@media screen and (min-width: 1232px){
+@media screen and (max-width: 2080px) {
   .access{
     width: 100%;
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -239,7 +281,7 @@ export default {
     margin-left: -20%;
     width: 50%;
     height: 100vh;
-    background-color: #130999;
+    background-color: var(--bg-color);
   }
 
   /* Formulario */
@@ -262,7 +304,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #130999;
+    border: 1px solid var(--bg-color);
     border-bottom-left-radius: 50rem;
     border-top-left-radius: 20rem;
     border-right: none;
@@ -315,7 +357,7 @@ export default {
     position:relative;
     width: 80%;
     height: 10%;
-    background-color: #130999;
+    background-color: var(--bg-color);
     border-radius: 10rem;
     border: none;
     cursor: pointer;
@@ -323,7 +365,8 @@ export default {
   }
 
   input[type="submit"]:hover{
-    background-color: #F04509;
+    background-color: var(--bg-color);
+    opacity: .8;
   }
 }
 </style>

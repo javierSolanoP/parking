@@ -6,16 +6,16 @@
                     <label for="monthly_payment"><strong>PLACA</strong></label>
                     <br>
                     <div class="search">
-                        <input type="text" v-model="monthly_payment" placeholder=" Placa..." required>
+                        <input maxlength="6" class="uppercase" type="text" v-model="monthly_payment" placeholder=" Placa..." required>
                         <input type="submit" value="Buscar">
                     </div>
                 </form>
                 <section class="container-option">
-                    <button @click="addMonthlyPayment()" class="option add">
-                        <img src="/agregar.PNG" alt="Agregar mensualidad">
+                    <button @click="addMonthlyPayment()" class="option add" title="Añadir mensualidad">
+                        <img src="/agregar.svg" alt="Agregar mensualidad">
                     </button>
-                    <button @click="updateMonthlyPayment()" class="option update">
-                        <img src="/modificar.PNG" alt="Modificar mensualidad">
+                    <button @click="updateMonthlyPayment()" class="option update" title="Modificar mensualidad">
+                        <img src="/modificar.svg" alt="Modificar mensualidad">
                     </button>
                 </section>
             </article>
@@ -108,13 +108,20 @@ export default {
                 this.update = true;
             }
         }
+
     }
 }
 </script>
 
 <style scoped>
+/* variable global para el background-color */
+:root{
+    --bg-color: #265281;
+}
+
+
 /* Para moviles */
-@media screen and (max-width: 500px){
+/* @media screen and (max-width: 500px){
     section{
         margin-left: 0;
         display: flex;
@@ -210,10 +217,10 @@ export default {
         margin-left: 20%;
         background-color: orange;
     }
-}
+} */
 
 /* Para ordenadores pequeños */
-@media screen and (min-width: 1232px){
+/* @media screen and (min-width: 1232px){ */
     section{
         margin-left: 0;
         width: 80vw;
@@ -224,7 +231,7 @@ export default {
     }
     .container{
         border-radius: 0;
-        border-bottom: 0.20rem  solid #130999;
+        border-bottom: 0.20rem  solid var(--bg-color);
     }
     article{
         width: 90%;
@@ -256,27 +263,42 @@ export default {
         width: 50%;
         height: 100%;
         background-color: #fff;
-        border-bottom: 0.20rem  solid #130999;
-        border-top: none;
-        border-left: none;
-        border-right: none;
+        border: none;
+        border-bottom: 0.20rem  solid var(--bg-color);
+        outline-style: none;
         border-radius: 0;
         font-size: 150%;
     }
+
     input[type="text"]:focus{
         color: #212529;
         background-color: #fff;
-        border: 0;
-        border-color: none;
-        outline: #fff;
+        border: none;
+        border-color: transparent;
+        outline-style: none;
         box-shadow:0;
-        border-bottom: 0.20rem  solid #F04509;
+        border-bottom: 0.20rem  solid var(--bg-color);
     }
+    
     input[type="submit"]{
         width: 40%;
         height: 100%;
         font-size: 150%;
+        background-color: var(--bg-color);
+        transition: .5s;
     }
+
+    input[type="submit"]:hover{
+        border: 1px solid var(--bg-color);
+        color: var(--bg-color);
+        background-color: #fff;
+        transition: .5s;
+    }
+
+    .uppercase{
+        text-transform: uppercase;
+    }
+
     .container-option{
         width: 40%;
         height: 100%; 
@@ -285,26 +307,29 @@ export default {
         justify-content: space-between;
     }
     .option{
-        width: 40%;
+        width: 80%;
         height: 80%;
         background-color: thistle;
+        margin-left: 50px;
         border-radius: 1rem;
         border: 0;
         box-shadow: 0.5rem 0.5rem 0.5rem rgb(78, 77, 77);
+        transition: .4s;
     }
     .option:hover{
         transform: scale(110%, 110%);
         cursor: pointer;
+        transition: .4s;
     }
     .option img{
-        width: 90%;
-        height: 90%;
+        width: 100%;
+        height: 100%;
     }
     .option.add{
-        background-color: #F04509;
+        background-color: #2196F3;
     }
     .option.update{
-        background-color: orange;
+        background-color: #fff;
     }
-}
+/* } */
 </style>

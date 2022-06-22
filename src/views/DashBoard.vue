@@ -2,9 +2,12 @@
     <div id="dashboard">
         <aside>
             <div class="container-avatar">
-                <img src="/man.PNG" alt="Avatar" class="avatar">
+                <img src="/logo.svg" alt="Avatar" class="avatar">
+            </div>
+            <div class="user-info">
+                <p id="userName">Nombre del usuario</p>
                 <br>
-                <p>Javier Solano</p>
+                <hr>
             </div>
             <button class="menu" @click="showMenu">
                 <img src="/menu.PNG" alt="Menú de navegación">
@@ -14,15 +17,13 @@
                     <button @click="exitMenu">X</button>
                 </li>
                 <li>
-                     <img src="/hour.PNG" alt="" class="icon">
-                    <button @click="changeView" class="route-link">Horas</button>
-                </li>
-                <li>
                     <img src="/calendario.PNG" alt="" class="icon">
                     <button @click="changeView" class="route-link">Mensualidades</button>
                 </li>
-                <li></li>
-                <li></li>
+                <li>
+                    <img src="/hour.PNG" alt="" class="icon">
+                    <button @click="changeView" class="route-link">Horas</button>
+                </li>
             </ul>
             <button class="logout" @click="redirect">
                 <img src="/salida.PNG" alt="Icono de cerrar sesión" class="icon">
@@ -44,7 +45,14 @@ export default {
             dom: document.addEventListener('DOMContentLoaded', () => {
                     const access = document.querySelector('.access');
                     access.style.display = 'none';
-                }),
+                    
+                    // seleccionamos el parrafo
+                    let p = document.getElementById('userName');
+
+                    // insertamos el nombre del usuario que inicia sesión
+                    p.innerText = localStorage.getItem('userName').toUpperCase();
+
+            }),
             pathMonthlyPayment: '/dashboard/mensualidades'
         }
     },
@@ -158,64 +166,211 @@ export default {
 </script>
 
 <style>
-/* Para moviles */
-@media screen and (max-width: 500px){
-    #app{
-        display: flex;
-        flex-direction: column;
-    }
-    .access{
-        display: flex;
-    }
+/* variable global para el background-color */
+:root{
+    --bg-color: #265281;
 }
-/* Para ordenadores pequeños */
-@media screen and (min-width: 1232px){
-    #app{
-        display: flex;
-        flex-direction: column;
-    }
-}
+
 </style>
 
 <style scoped>
+
 #dashboard{
     width: 100vw;
     height: 100vh;
     display: flex;
 }
+
+aside{
+    top: 0;
+    position: sticky;
+    margin-left: 0;
+    width: 18%;
+    height: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-avatar{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-bottom-left-radius: 10rem;
+    border-right: 0.1rem solid rgba(107, 106, 106, 0.125);
+}
+
+.container-avatar .avatar{
+    width: 80%;
+    height: 100%;
+}
+
+.user-info{
+    margin-top: 15px;
+    width: 100%;
+    height: 5%;
+}
+
+.user-info p{
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+}
+
+.menu{
+    display: none;
+}
+
+ul{
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+li{
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    height: 13%;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+li .route-link{
+    width: 75%;
+    height: 40%;
+    font-size: 150%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+li .route-link:hover{
+    opacity: .3;
+}
+
+.exit{
+    display: none;
+}
+
+li .icon{
+    margin-left:7%;
+    width: 15%;
+    height: 70%;
+    border-radius: 100%;
+}
+
+li a{
+    width: 75%;
+    height: 40%;
+    font-size: 150%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+li a:hover{
+    opacity: .7;
+}
+
+.logout{
+    width: 100%;
+    height: 10%;
+    border: none;
+    background-color: #fff;
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+
+.logout .icon{
+    width: 20%;
+    height: 80%;
+}
+
+.logout p{
+    font-size: 20px;
+    width: 70%;
+}
+
 /* Para moviles */
-@media screen and (max-width: 500px){
-   
+@media only screen and (max-width: 520px){
+
     #dashboard{
         flex-direction: column;
     }
     aside{
-        background-color: #130999;
+        border: 1px solid red;
+        width: 100%;
+    }
+
+    .container-avatar,
+    .user-info{
+        display: none;
+    }
+
+    #ul{
+        display: none;
+    }
+
+
+    /* aside{
+        background-color: var(--bg-color);
         width: 100%;
         height: 25%;
         margin-left: 0;
         display: flex;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
         justify-content: center;
     }
+
     .container-avatar{
         width: 30%;
         height: 100%;
         margin-left: -3%;
+        border: 1px solid red;
+        float: left;
+        display: none;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
     }
+
     .container-avatar .avatar{
         width: 90%;
         height: 60%;
         border-radius: 100%;
     }
+
     .container-avatar p{
         width: 100%;
         color: #fff;
     }
+
     .menu{
         width: 15%;
         height: 40%;
@@ -224,10 +379,12 @@ export default {
         border-radius: 1rem;
         background-color: #F04509;
     }
+
     .menu img{
         width: 80%;
         height: 80%;
     }
+
     ul{
         position: relative;
         margin-top: 141%;
@@ -239,10 +396,11 @@ export default {
         align-items: center;
         justify-content: center;
         padding: 0; 
-        background-color: #130999; 
+        background-color: var(--bg-color); 
         transform: translateX(0vw);
         transition: transform 0.5s;
     }
+
     li{
         border-bottom: 1px solid #fff;
         width: 100%;
@@ -252,9 +410,11 @@ export default {
         justify-content: space-between;
         align-items: center;
     }
+
     .exit{
         justify-content: flex-end;
     }
+
     .exit button{
         margin-right: 5%;
         width: 12%;
@@ -265,12 +425,14 @@ export default {
         color: #fff;
         text-align: center;
     }
+
     li .icon{
         margin-left:7%;
         width: 15%;
         height: 70%;
         border-radius: 100%;
     }
+
     li .route-link{
         width: 75%;
         height: 40%;
@@ -281,9 +443,11 @@ export default {
         text-decoration: none;
         background-color: transparent;
     }
+
     li .route-link:hover{
         color: #F04509
     }
+
     .logout{
         width: 15%;
         height: 40%;
@@ -291,36 +455,50 @@ export default {
         border: none;
         border-radius: 1rem;
         cursor: pointer;
-        background-color: #F04509;
-        color: #fff;
+        background-color: #fff;
+        color:  var(--bg-color);
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        
+        justify-content: center;  
     }
+
     .logout .icon{
         width: 80%;
         height: 80%;
     }
+
     .logout p{
         width: 100%;
         display:none
-    }
+    } */
+
 }
+
+/* @media only screen and (min-width: 500px){
+
+    #app{
+        display: flex;
+        flex-direction: column;
+    }
+    .access{
+        display: flex;
+    }
+
+} */
 /* Para ordenadores pequeños */
-@media screen and (min-width: 1232px){
+/* @media screen and (min-width: 1232px){
     aside{
         top: 0;
         position: sticky;
         margin-left: 0;
-        width: 20%;
+        width: 18%;
         height: 100%;
-        background-color: #130999;
+        background-color: var(--bg-color);
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     }
     .container-avatar{
         width: 100%;
@@ -329,28 +507,40 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: #fff;
+        border-bottom-left-radius: 10rem;
+        border-right: 0.1rem solid rgba(107, 106, 106, 0.125);
     }
     .container-avatar .avatar{
         width: 80%;
-        height: 80%;
-        border-radius: 100%;
+        height: 100%;
     }
-    .container-avatar p{
+
+    .user-info{
+        margin-top: 15px;
         width: 100%;
-        color: #fff;
+        height: 5%;
     }
+
+    .user-info p{
+        color: #fff;
+        text-align: center;
+        font-size: 25px;
+    }
+
     .menu{
         display: none;
     }
     ul{
         width: 90%;
-        height: 60%;
+        height: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 0;
     }
+    
     li{
         border-bottom: 1px solid #fff;
         width: 100%;
@@ -359,6 +549,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 5px;
     }
     li .route-link{
         width: 75%;
@@ -371,7 +562,7 @@ export default {
         background-color: transparent;
     }
     li .route-link:hover{
-        color: #F04509
+        opacity: .3;
     }
     .exit{
         display: none;
@@ -391,28 +582,36 @@ export default {
         cursor: pointer;
         text-decoration: none;
     }
+
     li a:hover{
-        color: #F04509
+        opacity: .7;
     }
     .logout{
-        width: 80%;
-        height: 5%;
+        width: 100%;
+        height: 10%;
         border: none;
-        border-radius: 10rem;
-        cursor: pointer;
-        background-color: #F04509;
-        color: #fff;
+        background-color: #fff;
+        color: var(--bg-color);
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
+    .logout:hover{
+        cursor: pointer;
+        opacity: .7;
+    }
+
     .logout .icon{
         width: 20%;
         height: 80%;
     }
     .logout p{
+        font-size: 20px;
         width: 70%;
     }
 }
+} */
 
 </style>
+
