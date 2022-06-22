@@ -20,7 +20,15 @@
                 </section>
             </article>
         </section>
-        <ViewMonthlyPaymentHistory v-show="view"/>
+        <ViewMonthlyPaymentHistory 
+            :owner="owner" 
+            :lastName="lastName"
+            :telephone="telephone"
+            :startDate="startDate"
+            :expiryDate="expiryDate"
+            :status="status"
+            v-show="view"
+        />
         <AddMonthlyPayment v-show="add"/>
         <UpdateMonthlyPayment v-show="update"/>
     </div>
@@ -30,6 +38,7 @@
 import ViewMonthlyPaymentHistory from '@/components/ViewMonthlyPaymentHistory.vue';
 import AddMonthlyPayment from '@/components/AddMonthlyPayment.vue';
 import UpdateMonthlyPayment from '@/components/UpdateMonthlyPayment.vue';
+import axios from "axios";
 
 export default {
     name: 'MonthlyPayment',
@@ -42,10 +51,16 @@ export default {
 
     data: function () {
         return {
-            monthly_payment: '',
+            monthly_payment:'',
             view: false,
             add: false,
-            update: false
+            update: false,
+            owner:'',
+            lastName:'',
+            telephone:'',
+            startDate:'',
+            expiryDate:'',
+            status:''
         }
     },
 
@@ -53,22 +68,48 @@ export default {
 
         // Metodo para habilitar el componente del historial de mensualidades: 
         queryMonthlyPayment(){
+            
+            // extraemos el nombre del usuario conectado
+            let userName = localStorage.getItem('userName');
 
-            // Condicionamos la visibilidad del componente: 
-            if(this.view){
-                this.view = false;
-            }else if(!this.view){
+            // concatenamos la url 
+            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName + '/' + this.monthly_payment
+            
+            // realizamos la peticion
+            axios.get(url)
+                .then((response) => {
+                    
+                    // almacenamos la mensualidad
+                    var monthlyPayData = response.data.monthlyPayment[0];
+                    
+                    // asiganamos los datos
+                    this.owner = monthlyPayData.name.toUpperCase();
+                    this.lastName = monthlyPayData.lastName.toUpperCase();
+                    this.telephone = monthlyPayData.telephone;
+                    this.startDate = monthlyPayData.startDate;
+                    this.expiryDate = monthlyPayData.expiryDate;
+                    this.status = monthlyPayData.status;
 
-                // Condicionamos la visibilidad de los otros componentes: 
-                if(this.add){
-                    this.add = false;
-                }else if(this.update){
-                    this.update = false;
-                }
+                    //  Condicionamos la visibilidad del componente: 
+                    if(this.view){
+                        this.view = false;
+                    }else if(!this.view){
 
-                this.view = true;
-            }
- 
+                        // Condicionamos la visibilidad de los otros componentes: 
+                        if(this.add){
+                            this.add = false;
+                        }else if(this.update){
+                            this.update = false;
+                        }
+
+                        this.view = true;
+                    }
+                   
+                })
+                .catch((error) => {
+                    
+                    console.log(error)
+                })
         },
 
         // Metodo para habilitar el componente que agreaga mensualidades: 
@@ -220,7 +261,7 @@ export default {
 } */
 
 /* Para ordenadores pequeños */
-/* @media screen and (min-width: 1232px){ */
+@media screen and (max-width: 2080px){
     section{
         margin-left: 0;
         width: 80vw;
@@ -331,5 +372,5 @@ export default {
     .option.update{
         background-color: #fff;
     }
-/* } */
+}
 </style>

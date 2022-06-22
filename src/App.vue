@@ -50,7 +50,7 @@ export default {
         .then(function (response){
 
           // almacenamos el nombre de usuario
-          let user = response.data.content.user.user;
+          let userName = response.data.content.user.user;
 
           // almacenamos los servicios que tiene ese usuario
           let services = response.data.content.services
@@ -68,7 +68,7 @@ export default {
           if(searchValidate >= 0){
             
             // almacenamos el nombre de usuario
-            localStorage.setItem('userName', user);
+            localStorage.setItem('userName', userName);
 
             // redirigimos a la vista principal
             location.href = 'dashboard';

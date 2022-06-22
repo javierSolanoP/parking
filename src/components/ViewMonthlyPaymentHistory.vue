@@ -5,7 +5,7 @@
                 <div class="container">
                     <div class="option">
                         <!-- <p class="data"><strong>ESTADO</strong></p> -->
-                        <p class="data success">Paga</p>
+                        <p class="data success">{{status}}</p>
                     </div>
                     <div class="container-option-button">
                         <div class="option button">
@@ -23,25 +23,25 @@
                 <div class="container">
                     <div class="owner">
                         <p class="data"><strong>NOMBRE</strong></p>
-                        <p class="data content">Javier</p>
+                        <p class="data content">{{owner}}</p>
                     </div>
                     <div class="owner">
                         <p class="data"><strong>APELLIDO</strong></p>
-                        <p class="data content">Solano</p>
+                        <p class="data content">{{lastName}}</p>
                     </div>
                     <div class="owner">
                         <p class="data"><strong>TELEFONO</strong></p>
-                        <p class="data content">324589678</p>
+                        <p class="data content">{{telephone}}</p>
                     </div>
                 </div>
                 <div class="container">
                     <div class="date">
                         <p class="data"><strong class="date-strong">FECHA DE INICIO</strong></p>
-                        <p class="data content">16/11/2021</p>
+                        <p class="data content">{{startDate}}</p>
                     </div>
                     <div class="date">
                         <p class="data"><strong class="date-strong">FECHA DE FIN</strong></p>
-                        <p class="data content">16/12/2021</p>
+                        <p class="data content">{{expiryDate}}</p>
                     </div>
                 </div>
             </article>
@@ -86,6 +86,14 @@ export default {
         return {
             test: true
         }
+    },
+    props:{
+        status:String,
+        owner:String,
+        lastName:String,
+        telephone:String,
+        startDate:String,
+        expiryDate:String
     },
     methods: {
 
@@ -133,6 +141,8 @@ export default {
 
         },
     }
+
+    
 }
 </script>
 <style scoped>
@@ -384,7 +394,7 @@ export default {
 }
 
 /* Para ordenadores pequeños */
-@media screen and (min-width: 1232px){
+@media screen and (max-width: 2080px){
     section{
         margin-left: 0;
         width: 80vw;

@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
 
     name: 'DashBoard',
@@ -66,8 +68,24 @@ export default {
         // Metodo para redirigir a la vista de inicio de sesión:  
         redirect(){
 
-            // Redireccionamos a la vista: 
-            location.href = '/'
+            // extraemos el nombre del usuario
+            let userName = localStorage.getItem('userName')
+            
+            // realizamos la peticion para cerrar sesion
+            axios.post('http://127.0.0.1:8080/api/users/logout/v1/' + userName)
+                .then(function (){
+
+                    // removemos el nombre del localstorage
+                    localStorage.removeItem('userName')
+
+                    // Redireccionamos a la vista de inicio de sesion
+                    location.href = '/'
+
+                })
+                .catch(function(error) {
+
+                    console.log(error)
+                })            
 
         },
 
