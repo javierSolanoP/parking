@@ -6,7 +6,7 @@
                     <label for="monthly_payment"><strong>PLACA</strong></label>
                     <br>
                     <div class="search">
-                        <input maxlength="6" class="uppercase" type="text" v-model="monthly_payment" placeholder=" Placa..." required>
+                        <input maxlength="6" id="plateInput" class="uppercase plateInput" type="text" v-model="monthly_payment" placeholder=" Placa..." required>
                         <input type="submit" value="Buscar">
                     </div>
                 </form>
@@ -14,7 +14,7 @@
                     <button @click="addMonthlyPayment()" class="option add" title="Añadir mensualidad">
                         <img src="/agregar.svg" alt="Agregar mensualidad">
                     </button>
-                    <button v-if="hide == '1'" @click="updateMonthlyPayment()" class="option update" title="Modificar mensualidad">
+                    <button id="btnAdd" v-if="hide == '1'" @click="updateMonthlyPayment()" class="option update" title="Modificar mensualidad">
                         <img src="/modificar.svg" alt="Modificar mensualidad">
                     </button>
                 </section>
@@ -87,7 +87,7 @@ export default {
             let userName = localStorage.getItem('userName');
 
             // concatenamos la url 
-            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName + '/' + this.monthly_payment
+            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName + '/' + this.monthly_payment;
             
             // realizamos la peticion
             axios.get(url)
@@ -170,6 +170,28 @@ export default {
                 this.update = true;
             }
         }
+
+    },
+
+    mounted(){
+
+        // escuchamos el evento 'keyup'
+        document.addEventListener('keyup', (e) => {
+            
+            // validamos si esta posiconado en el input de la placa
+            if(e.target.matches('.plateInput')){
+
+                // verificamos si esta vacio el input
+                if(e.target.value == ''){
+
+                    // ocultamos los componentes:
+                    this.view = false
+                    this.update = false
+                    this.hide = '0'
+                }
+
+            }
+        })
 
     }
 }

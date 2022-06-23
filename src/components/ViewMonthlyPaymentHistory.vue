@@ -95,6 +95,7 @@ export default {
         startDate:String,
         expiryDate:String
     },
+    
     methods: {
 
         // Metodo para visualizar el modal de pago:
