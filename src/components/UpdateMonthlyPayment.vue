@@ -6,12 +6,12 @@
                     <div class="container-input">
                         <label for="first_date" class="date">Fecha de inicio</label>
                         <!-- <input type="date" name="first_date" v-model="first_date"> -->
-                        <p class="date-info">24-05-2022</p>
+                        <p class="date-info">{{startDate}}</p>
                     </div>
                     <div class="container-input">
                         <label for="finish_date" class="date">Fecha de caducidad</label>
                         <!-- <input type="date" name="finish_date" v-model="finish_date"> -->
-                        <p class="date-info">23-06-2022</p>
+                        <p class="date-info">{{expiryDate}}</p>
                     </div>
                 </div>
                 <div class="container-right">
@@ -19,22 +19,22 @@
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="cedula">Cedula</label> -->
-                                <input type="text" name="identification" v-model="identification" placeholder=" cedula...">
+                                <input type="text" name="identification" v-model="newIdentification" :placeholder="identification">
                             </div>
                             <div class="input">
                                 <!-- <label for="celular">Celular</label> -->
-                                <input type="text" name="telephone" v-model="telephone" placeholder=" celular...">
+                                <input type="text" name="telephone" v-model="newTelephone" :placeholder="telephone">
                             </div>
                     </div>
                     <br>
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="nombre">Nombre</label> -->
-                                <input type="text" name="name" v-model="name" placeholder=" nombre...">
+                                <input type="text" name="name" v-model="newOwner" :placeholder="owner">
                             </div>
                             <div class="input">
                                 <!-- <label for="apellido">Apellido</label> -->
-                                <input type="text" name="last_name" v-model="last_name" placeholder=" apellido...">
+                                <input type="text" name="lastName" v-model="newLastName" :placeholder="lastName">
                             </div>
                     </div>
                     <br>
@@ -74,15 +74,21 @@ export default {
 
     data: function () {
         return {
-            identification: '',
-            telephone: '',
-            name: '',
-            last_name: '',
-            card: '',
-            first_date: ''
+            newIdentification:'',
+            newOwner:'',
+            newLastName:'',
+            newTelephone:''
         }
-    }
+    },
 
+    props:{
+        owner:String,
+        lastName:String,
+        telephone:String,
+        startDate:String,
+        expiryDate:String,
+        identification:String
+    }
 }
 </script>
 

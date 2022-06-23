@@ -4,8 +4,8 @@
             <article>
                 <div class="container">
                     <div class="option">
-                        <!-- <p class="data"><strong>ESTADO</strong></p> -->
-                        <p class="data success">{{status}}</p>
+                        <p v-if="status === 'PAGA'" class="data success">{{status}}</p>
+                        <p v-if="status === 'NO PAGA'" class="data fail">{{status}}</p>
                     </div>
                     <div class="container-option-button">
                         <div class="option button">
@@ -55,7 +55,7 @@
                     <div class="body">
                         <h2>¿Quiere cambiar el estado de la mensualidad, como mensualidad paga?</h2>
                         <div class="container-button">
-                            <button @click="validateOption" class="option yes pay">Si</button>
+                            <button @click="validateOptionPay" class="option yes pay">Si</button>
                             <button @click="cancelOptionPay" class="option no">No</button> 
                         </div>
                     </div>
@@ -140,6 +140,14 @@ export default {
             modal.style.visibility = 'hidden';
 
         },
+
+        validateOptionPay(){
+            console.log('cambiar a paga');
+        },
+
+        validateOption(){
+            console.log('renovar mensualidad');
+        }
     }
 
     

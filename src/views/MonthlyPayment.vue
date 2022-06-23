@@ -14,12 +14,13 @@
                     <button @click="addMonthlyPayment()" class="option add" title="Añadir mensualidad">
                         <img src="/agregar.svg" alt="Agregar mensualidad">
                     </button>
-                    <button @click="updateMonthlyPayment()" class="option update" title="Modificar mensualidad">
+                    <button v-if="hide == '1'" @click="updateMonthlyPayment()" class="option update" title="Modificar mensualidad">
                         <img src="/modificar.svg" alt="Modificar mensualidad">
                     </button>
                 </section>
             </article>
         </section>
+
         <ViewMonthlyPaymentHistory 
             :owner="owner" 
             :lastName="lastName"
@@ -29,8 +30,19 @@
             :status="status"
             v-show="view"
         />
+
         <AddMonthlyPayment v-show="add"/>
-        <UpdateMonthlyPayment v-show="update"/>
+
+        <UpdateMonthlyPayment
+            :owner="owner"
+            :lastName="lastName"
+            :telephone="telephone"
+            :identification="identification"
+            :startDate="startDate"
+            :expiryDate="expiryDate"
+            v-show="update"
+        />
+
     </div>
 </template>
 
@@ -60,7 +72,9 @@ export default {
             telephone:'',
             startDate:'',
             expiryDate:'',
-            status:''
+            status:'',
+            identification:'',
+            hide:''
         }
     },
 
@@ -82,53 +96,60 @@ export default {
                     // almacenamos la mensualidad
                     var monthlyPayData = response.data.monthlyPayment[0];
                     
-                    // asiganamos los datos
+                    // asignamos los datos
                     this.owner = monthlyPayData.name.toUpperCase();
                     this.lastName = monthlyPayData.lastName.toUpperCase();
                     this.telephone = monthlyPayData.telephone;
-                    this.startDate = monthlyPayData.startDate;
-                    this.expiryDate = monthlyPayData.expiryDate;
-                    this.status = monthlyPayData.status;
+                    this.identification = monthlyPayData.identification
 
-                    //  Condicionamos la visibilidad del componente: 
-                    if(this.view){
-                        this.view = false;
-                    }else if(!this.view){
+                    // cambiamos el formato de las fechas a: DD/MM/YYYY
+                    this.startDate = monthlyPayData.startDate.split("-").reverse().join("/");
+                    this.expiryDate = monthlyPayData.expiryDate.split("-").reverse().join("/");
 
-                        // Condicionamos la visibilidad de los otros componentes: 
-                        if(this.add){
-                            this.add = false;
-                        }else if(this.update){
-                            this.update = false;
-                        }
+                    // cambiamos el estado a español
+                    this.status = monthlyPayData.status == 'unpaid' ? "NO PAGA" : "PAGA";
 
-                        this.view = true;
-                    }
-                   
+                    // habilitamos el boton de editar
+                    this.hide = '1';
+
+                    // habilitamos la vista de la mensualidad
+                    this.view = true;
+                    
                 })
                 .catch((error) => {
                     
-                    console.log(error)
+                    // mostramos un mensaje
+                    alert(error.response.data.error)
+
+                    // ocultamos el boton de editar
+                    this.hide = '0';
+
+                    // deshabilitamos la visivilidad de los otros componentes
+                    this.view = false
+                    this.add = false
+                    this.update = false
                 })
         },
 
         // Metodo para habilitar el componente que agreaga mensualidades: 
         addMonthlyPayment() {  
+            this.view = false
+            this.update = false
+            this.add = true
+            // // Condicionamos la visibilidad del componente: 
+            // if(this.add){
+            //     this.add = false;
+            // }else if(!this.add){
+            //     console.log('click')
+            //     // Condicionamos la visibilidad de los otros componentes: 
+            //     if(this.view){
+            //         this.view = false;
+            //     }else if(this.update){
+            //         this.update = false;
+            //     }
 
-            // Condicionamos la visibilidad del componente: 
-            if(this.add){
-                this.add = false;
-            }else if(!this.add){
-
-                // Condicionamos la visibilidad de los otros componentes: 
-                if(this.view){
-                    this.view = false;
-                }else if(this.update){
-                    this.update = false;
-                }
-
-                this.add = true;
-            }
+            //     this.add = true;
+            // }
         }, 
 
         // Metodo para habilitar el componente que actualiza mensualidades: 
