@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section id="viewMonthlyPayment">
+        <section v-show="monthlyPaymentView" id="viewMonthlyPayment">
             <article>
                 <div class="container">
                     <div class="option">
@@ -76,24 +76,59 @@
                     </div>
             </div>
         </div>
+
+
+        <TicketMonthlyPayment 
+            :date="date"
+            :tariff="tariff"
+            :fechaInicio="fechaInicio"
+            :fechaFin="fechaFin"
+            :plate="plate"
+            :subTotal="subTotal"
+            :iva="iva"
+            :total="total"
+            v-show="ticket" 
+        />
     </div>
+
+    
+
 </template>
 
 <script>
+import TicketMonthlyPayment from '@/components/TicketMonthlyPayment.vue';
+import axios from "axios";
+
+
 export default {
     name: 'ViewMonthlyPaymentHistory',
     data: function (){
         return {
-            test: true
+            test: true,
+            ticket:false,
+            monthlyPaymentView:true,
+            date:'',
+            tariff:'',
+            fechaInicio:'',
+            fechaFin:'',
+            plate:'',
+            subTotal:0,
+            iva:0,
+            total:0
         }
     },
+
+    components: {
+        TicketMonthlyPayment
+    },
+
     props:{
         status:String,
         owner:String,
         lastName:String,
         telephone:String,
         startDate:String,
-        expiryDate:String
+        expiryDate:String,
     },
     
     methods: {
@@ -143,7 +178,56 @@ export default {
         },
 
         validateOptionPay(){
-            console.log('cambiar a paga');
+
+            // // obtenemos el nombre del usuario
+            let userName = localStorage.getItem('userName');
+
+            // obtenemos el id de la mensualidad
+            let idMp = localStorage.getItem('idMp');
+            
+            // obtenemos la fecha actual
+            let date = new Date();
+            let paymentDate = date.toLocaleDateString().split("/").join("-")
+
+            // concatenamos el url
+            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName + '/' + idMp +  '/paid/' + paymentDate
+
+            // realizamos la peticion
+            axios.put(url)
+                .then((response) => {
+                    
+                    // almacenamos los datos del recibo
+                    let ticketData = response.data.ticket;
+
+                    // asignamos los datos
+                    this.tariff = ticketData.tariffName;
+                    this.subTotal = ticketData.subTotal;
+                    this.iva = ticketData.iva;
+                    this.total = ticketData.total;
+
+                    this.fechaInicio = ticketData.startDate.split("-").reverse().join("/");
+                    this.fechaFin = ticketData.expiryDate.split("-").reverse().join("/");
+
+                    this.date = paymentDate;
+
+                    this.plate = ticketData.plate;
+
+                    console.log(ticketData.total)
+
+                    this.cancelOptionPay();
+                    this.ticket = true
+                    this.monthlyPaymentView = false
+
+                })
+                .catch((err) => {
+
+                    // console.log(err.response.data.error)
+                    alert(err.response.data.error)
+
+                    this.cancelOptionPay();
+                })
+
+           
         },
 
         validateOption(){

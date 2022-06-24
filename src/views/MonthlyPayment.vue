@@ -96,6 +96,9 @@ export default {
                     // almacenamos la mensualidad
                     var monthlyPayData = response.data.monthlyPayment[0];
                     
+                    // guardamos el id de la mensualidad
+                    localStorage.setItem('idMp', monthlyPayData.idMonthlyPayment);
+
                     // asignamos los datos
                     this.owner = monthlyPayData.name.toUpperCase();
                     this.lastName = monthlyPayData.lastName.toUpperCase();
@@ -123,6 +126,8 @@ export default {
 
                     // ocultamos el boton de editar
                     this.hide = '0';
+                    
+                    localStorage.removeItem('idMp');
 
                     // deshabilitamos la visivilidad de los otros componentes
                     this.view = false

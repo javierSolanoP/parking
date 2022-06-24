@@ -76,7 +76,7 @@ export default {
                 .then(function (){
 
                     // removemos el nombre del localstorage
-                    localStorage.removeItem('userName')
+                    localStorage.clear();
 
                     // Redireccionamos a la vista de inicio de sesion
                     location.href = '/'
