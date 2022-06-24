@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="container" id="monthlyPayment">
-            <article>
+            <article id="articleContainer">
                 <form @submit.prevent="queryMonthlyPayment">
                     <label for="monthly_payment"><strong>PLACA</strong></label>
                     <br>
@@ -197,6 +197,19 @@ export default {
 
             }
         })
+
+        // document.addEventListener('click', (e) => {
+
+        //     if(e.target.matches('.yes')){
+        //         document.body.style.display = 'none'
+
+        //         setTimeout(() => {
+        //             document.body.style.display = 'block'
+        //         }, 2000);
+        //         console.log('siiiii')
+        //     }
+            
+        // })
 
     }
 }

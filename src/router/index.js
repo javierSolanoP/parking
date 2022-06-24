@@ -6,6 +6,7 @@ import App from '../App.vue';
 // Modulo de dashboard: 
 import DashBoard from '@/views/DashBoard.vue';
 import MonthlyPayment from '@/views/MonthlyPayment.vue';
+import TicketMonthlyPayment from '@/components/TicketMonthlyPayment.vue';
 
 // import { component } from 'vue/types/umd';
 
@@ -38,6 +39,12 @@ const routes = [
       {
         path: 'mensualidades',
         component: MonthlyPayment
+      },
+
+      {
+        path: 'ticket',
+        component: TicketMonthlyPayment,
+        props:true
       }
     ],
     props: true

@@ -77,7 +77,6 @@
             </div>
         </div>
 
-
         <TicketMonthlyPayment 
             :date="date"
             :tariff="tariff"
@@ -178,8 +177,8 @@ export default {
         },
 
         validateOptionPay(){
-
-            // // obtenemos el nombre del usuario
+            
+            // obtenemos el nombre del usuario
             let userName = localStorage.getItem('userName');
 
             // obtenemos el id de la mensualidad
@@ -199,24 +198,15 @@ export default {
                     // almacenamos los datos del recibo
                     let ticketData = response.data.ticket;
 
-                    // asignamos los datos
+                    // asignamos los datos para el recibo
                     this.tariff = ticketData.tariffName;
                     this.subTotal = ticketData.subTotal;
                     this.iva = ticketData.iva;
                     this.total = ticketData.total;
-
                     this.fechaInicio = ticketData.startDate.split("-").reverse().join("/");
                     this.fechaFin = ticketData.expiryDate.split("-").reverse().join("/");
-
                     this.date = paymentDate;
-
                     this.plate = ticketData.plate;
-
-                    console.log(ticketData.total)
-
-                    this.cancelOptionPay();
-                    this.ticket = true
-                    this.monthlyPaymentView = false
 
                 })
                 .catch((err) => {
@@ -232,7 +222,38 @@ export default {
 
         validateOption(){
             console.log('renovar mensualidad');
+        },
+
+        teste(){
+
+            this.cancelOptionPay();
+            this.monthlyPaymentView = false
+            this.ticket = true
+            window.open('ticket')
+            print();
         }
+    },
+
+    mounted(){
+
+        let test = document.getElementById('userName')
+        test.addEventListener('click', (e) => {
+            
+            document.body.style.display = 'none'
+            let div = e.target.parentElement.parentElement.id;
+            
+            let divContainer = document.getElementById(div);
+
+            let mpContainer = document.getElementById('articleContainer');
+
+            divContainer.style.display = 'hidden';
+            mpContainer.style.display = 'hidden';
+
+            this.ticket = true;
+            
+        })
+    
+
     }
 
     

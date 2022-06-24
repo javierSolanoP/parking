@@ -1,6 +1,6 @@
 <template>
     <div id="dashboard">
-        <aside>
+        <aside id="asideContainer">
             <div class="container-avatar">
                 <img src="/logo.svg" alt="Avatar" class="avatar">
             </div>
