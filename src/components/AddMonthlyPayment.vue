@@ -1,11 +1,11 @@
 <template>
     <div>
         <section id="addMonthlyPayment">
-            <form @submit.prevent="addMonthlyPayment">
+            <form id="formMp" @submit.prevent="addMonthlyPayment">
                 <div class="container-left">
                     <div class="container-input">
                         <label for="dateStart" class="date">Fecha de inicio</label>
-                        <input type="date" name="dateStart" v-model="datos.dateStart">
+                        <input required type="date" name="dateStart" v-model="datos.dateStart">
                     </div>
                     <!-- <div class="container-input">
                         <label for="finish_date" class="date">Fecha de caducidad</label>
@@ -17,11 +17,11 @@
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="cedula">Cedula</label> -->
-                                <input type="text" name="dni" v-model="datos.dni" required placeholder=" Cedula...">
+                                <input maxlength="10" type="text" name="dni" v-model="datos.dni" required placeholder=" Cedula...">
                             </div>
                             <div class="input">
                                 <!-- <label for="celular">Celular</label> -->
-                                <input type="text" name="telephone" v-model="datos.telephone" required placeholder=" Celular...">
+                                <input maxlength="10" type="text" name="telephone" v-model="datos.telephone" required placeholder=" Celular...">
                             </div>
                     </div>
                     <br>
@@ -44,8 +44,9 @@
                         </div>
                         <div class="input ">
                             <!-- <label for="type_of_vehicle">Tipo de vehiculo</label> -->
-                            <select class="tariff" name="type_of_vehicle" v-model="datos.tariff" >
-                                <option value="test" label="Tipo de tarfia">aaaaa</option>
+                            <select required class="tariff" name="tariff" v-model="datos.tariff" >
+                                <option label="Tarifa"></option>
+                                <option class="uppercase" v-for="tariffa in tariffs" :key="tariffa" :value="tariffa">{{tariffa}}</option>
                             </select>
                         </div>
                     </div>
@@ -57,7 +58,7 @@
                             </select>
                         </div> -->
                         <div class="input plate">
-                            <input v-on:click="test()" type="submit" value="Registrar">
+                            <input type="submit" value="Registrar">
                         </div>
                     </div>
                 </div>
@@ -66,6 +67,8 @@
     </div>
 </template>
 <script> 
+import axios from "axios";
+
 export default {
 
     name: 'AddMonthlyPayment',
@@ -81,18 +84,85 @@ export default {
                 plate: '',
                 dateStart: '',
                 tariff: ''
-            }
+            },
+
+            tariffs: [
+                
+            ]
             
         }
     },
 
     methods: {
 
-        test(){
+        // funcion para renderizar las tarifas
+        tariffRender(){
 
-            console.log(this.datos)
+            // obtenemos el nombre del usuario conectado
+            let userName = localStorage.getItem('userName');
+
+            // realizmos la peticion
+            axios.get('http://127.0.0.1:8000/api/system-admin/tariffs/v1/' + userName)
+                .then((res) => {
+
+                    // almacenamos los tipos de tarifas
+                    let tariffsType = res.data.tariffs;
+                    
+                    // iteramos el objeto
+                    for (const key in tariffsType) {
+                        
+                        // gaurdamos en un array los datos
+                        let arr = Object.values(tariffsType[key]);
+
+                        // las agregamos al arreglo
+                        this.tariffs.push(arr[0].toUpperCase());
+
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+
+        addMonthlyPayment(){
+            
+            // obtenemos el nombre del usuario conectado
+            let userName = localStorage.getItem('userName');
+
+            // seleccionamos el formulario
+            let form = document.getElementById('formMp');
+            
+            // extraemos los datos
+            let data = new FormData(form);
+            
+            // cambaimos el formato de la fecha
+            let dateStart = data.get('dateStart').split("-").reverse().join("/")
+            
+            // añaidmos la fehca formateada al arreglo
+            data.append('dateStart', dateStart);
+
+            // realizamos la peticion
+            axios.post('http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName, data)
+                .then((res) => {
+
+                    if(res.status == 201){
+
+                        alert('Mensualidad Creada Exitosamente!');
+                    }
+                })
+                .catch((err) => {
+
+                    
+                    alert(err.response.data.error);
+                })
         }
 
+    },
+
+    created:function(){
+
+        this.tariffRender()
+        
     }
 
 }
@@ -319,7 +389,7 @@ export default {
     }
 
     .tariff option{
-        background: red;
+        /* background: red; */
         width: 90%; 
         height: 80%;
         /* font-size: 120%; */
@@ -345,6 +415,7 @@ export default {
         font-size: 120%;
         border-radius: 1rem;
     }
+
     form h2{
         height: 10%;
         width: 90%;
