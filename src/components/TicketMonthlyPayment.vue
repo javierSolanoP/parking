@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <div class="container">
+        <div id="ticket" class="container">
             <div class="imgContainer">
                 <!-- <img src="logo.PNG" alt=""> -->
             </div>
@@ -93,6 +93,10 @@ export default {
     width: 100%;
     margin: 0 auto;
     height: 70vh;
+    display: none;
+    height: 20vh;
+    position: absolute;
+    top: 0;
     /* border: 1px solid red; */
 }
 
@@ -208,7 +212,5 @@ export default {
     border: 1px solid black;
     border-radius: 15px;
 }
-
-
 
 </style>

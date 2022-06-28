@@ -95,6 +95,7 @@ export default {
 
 <style>
 
+
 :root{
     --bg-color: #265281;
 }
@@ -369,4 +370,5 @@ export default {
     opacity: .8;
   }
 }
+
 </style>

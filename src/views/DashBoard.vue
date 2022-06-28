@@ -189,6 +189,42 @@ export default {
     --bg-color: #265281;
 }
 
+
+/* @media print and (width: 8cm) and (height: 12cm){ */
+@media print{
+
+  #asideContainer,
+  #testV,
+  #monthlyPayment,
+  #formMp,
+  img{
+    display: none;
+  }
+
+  body{
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  #ticket{
+    display: block;
+  }
+
+  @page{
+    margin: 0cm;
+    height: 0cm;
+  }
+
+
+
+  /* @page{
+    width: 8cm;
+    height: 12cm;    
+  } */
+
+  
+}
+
 </style>
 
 <style scoped>
@@ -630,6 +666,9 @@ li a:hover{
     }
 }
 } */
+
+
+
 
 </style>
 

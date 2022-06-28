@@ -61,6 +61,10 @@ export default {
         UpdateMonthlyPayment
     },
 
+    created(){
+        this.$root.$refs.A = this;
+    },
+
     data: function () {
         return {
             monthly_payment:'',

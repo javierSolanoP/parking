@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section v-show="monthlyPaymentView" id="viewMonthlyPayment">
+        <section v-show="monthlyPaymentView" id="testV">
             <article>
                 <div class="container">
                     <div class="option">
@@ -23,7 +23,7 @@
                 <div class="container">
                     <div class="owner">
                         <p class="data"><strong>NOMBRE</strong></p>
-                        <p class="data content">{{owner}}</p>
+                        <p class="data content usuario">{{owner}}</p>
                     </div>
                     <div class="owner">
                         <p class="data"><strong>APELLIDO</strong></p>
@@ -86,7 +86,7 @@
             :subTotal="subTotal"
             :iva="iva"
             :total="total"
-            v-show="ticket" 
+            
         />
     </div>
 
@@ -104,7 +104,7 @@ export default {
     data: function (){
         return {
             test: true,
-            ticket:false,
+            // ticket:false,
             monthlyPaymentView:true,
             date:'',
             tariff:'',
@@ -208,6 +208,18 @@ export default {
                     this.date = paymentDate;
                     this.plate = ticketData.plate;
 
+                    // ejecutamos la funcion de imprimir
+                    setTimeout(() => {
+                        print()
+                    }, 500)
+
+                    // deshabilitamos algunas vistas
+                    this.cancelOptionRenew();
+                    this.cancelOptionPay();
+
+                    // llamamos a la funcion que consulta la mensualidad
+                    this.$root.$refs.A.queryMonthlyPayment();
+
                 })
                 .catch((err) => {
 
@@ -216,41 +228,27 @@ export default {
 
                     this.cancelOptionPay();
                 })
-
-           
         },
 
         validateOption(){
             console.log('renovar mensualidad');
-        },
-
-        teste(){
-
-            this.cancelOptionPay();
-            this.monthlyPaymentView = false
-            this.ticket = true
-            window.open('ticket')
-            print();
         }
     },
 
     mounted(){
 
-        let test = document.getElementById('userName')
-        test.addEventListener('click', (e) => {
-            
-            document.body.style.display = 'none'
-            let div = e.target.parentElement.parentElement.id;
-            
-            let divContainer = document.getElementById(div);
+        document.addEventListener('click', (e) => {
 
-            let mpContainer = document.getElementById('articleContainer');
+            if(e.target.matches('#userName')){
+                console.log('aaaaaaaaaaaa');
 
-            divContainer.style.display = 'hidden';
-            mpContainer.style.display = 'hidden';
+                let prueba = document.getElementById('testV');
+                prueba.style.display = 'hidden'
 
-            this.ticket = true;
+            }
+
             
+
         })
     
 
@@ -264,6 +262,7 @@ export default {
 :root{
     --bg-color: #265281;
 }
+
 
 
 /* Para moviles */
