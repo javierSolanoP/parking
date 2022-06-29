@@ -107,7 +107,7 @@ export default {
                     this.owner = monthlyPayData.name.toUpperCase();
                     this.lastName = monthlyPayData.lastName.toUpperCase();
                     this.telephone = monthlyPayData.telephone;
-                    this.identification = monthlyPayData.identification
+                    this.identification = monthlyPayData.identification;
 
                     // cambiamos el formato de las fechas a: DD/MM/YYYY
                     this.startDate = monthlyPayData.startDate.split("-").reverse().join("/");
@@ -121,6 +121,9 @@ export default {
 
                     // habilitamos la vista de la mensualidad
                     this.view = true;
+                    
+                    // deshabilitamos la vista de añadir
+                    this.add = false;
                     
                 })
                 .catch((error) => {

@@ -20,10 +20,10 @@
                     <img src="/calendario.PNG" alt="" class="icon">
                     <button @click="changeView" class="route-link">Mensualidades</button>
                 </li>
-                <li>
+                <!-- <li>
                     <img src="/hour.PNG" alt="" class="icon">
                     <button @click="changeView" class="route-link">Horas</button>
-                </li>
+                </li> -->
             </ul>
             <button class="logout" @click="redirect">
                 <img src="/salida.PNG" alt="Icono de cerrar sesión" class="icon">

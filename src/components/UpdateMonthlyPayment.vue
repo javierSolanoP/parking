@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-show="edit">
         <section id="updateMonthlyPayment">
             <form @submit.prevent="updateMonthlyPayment" id="updateMp">
                 <div class="container-left">
@@ -59,7 +59,8 @@ export default {
             newIdentification:'',
             newOwner:'',
             newLastName:'',
-            newTelephone:''
+            newTelephone:'',
+            edit:true
         }
     },
 
@@ -113,6 +114,7 @@ export default {
 
                     // llamamos a la funcion que consulta la mensualidad para recargar
                     this.$root.$refs.A.queryMonthlyPayment();
+                    this.edit = false
 
                 })
                 .catch((err) => {
