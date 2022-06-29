@@ -86,7 +86,6 @@
             :subTotal="subTotal"
             :iva="iva"
             :total="total"
-            
         />
     </div>
 
@@ -104,7 +103,6 @@ export default {
     data: function (){
         return {
             test: true,
-            // ticket:false,
             monthlyPaymentView:true,
             date:'',
             tariff:'',
@@ -176,6 +174,7 @@ export default {
 
         },
 
+        // metodo para actualizar el estado de pago y generar recibo
         validateOptionPay(){
             
             // obtenemos el nombre del usuario
@@ -217,7 +216,7 @@ export default {
                     this.cancelOptionRenew();
                     this.cancelOptionPay();
 
-                    // llamamos a la funcion que consulta la mensualidad
+                    // llamamos a la funcion que consulta la mensualidad para recargar
                     this.$root.$refs.A.queryMonthlyPayment();
 
                 })
@@ -233,28 +232,7 @@ export default {
         validateOption(){
             console.log('renovar mensualidad');
         }
-    },
-
-    mounted(){
-
-        document.addEventListener('click', (e) => {
-
-            if(e.target.matches('#userName')){
-                console.log('aaaaaaaaaaaa');
-
-                let prueba = document.getElementById('testV');
-                prueba.style.display = 'hidden'
-
-            }
-
-            
-
-        })
-    
-
     }
-
-    
 }
 </script>
 <style scoped>

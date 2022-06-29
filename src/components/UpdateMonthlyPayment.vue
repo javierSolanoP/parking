@@ -1,7 +1,7 @@
 <template>
     <div>
         <section id="updateMonthlyPayment">
-            <form @submit.prevent="addMonthlyPayment">
+            <form @submit.prevent="updateMonthlyPayment" id="updateMp">
                 <div class="container-left">
                     <div class="container-input">
                         <label for="first_date" class="date">Fecha de inicio</label>
@@ -15,49 +15,30 @@
                     </div>
                 </div>
                 <div class="container-right">
-                    <h1><strong>INFORMACIÓN DEL DUEÑO</strong></h1>
+                    <h1><strong>EDITAR INFORMACIÓN DEL DUEÑO</strong></h1>
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="cedula">Cedula</label> -->
-                                <input type="text" name="identification" v-model="newIdentification" :placeholder="identification">
+                                <input class="new-data" maxlength="10" type="text" name="dni" v-model="newIdentification" :placeholder="identification">
                             </div>
                             <div class="input">
                                 <!-- <label for="celular">Celular</label> -->
-                                <input type="text" name="telephone" v-model="newTelephone" :placeholder="telephone">
+                                <input class="new-data" maxlength="10" type="text" name="telephone" v-model="newTelephone" :placeholder="telephone">
                             </div>
                     </div>
                     <br>
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="nombre">Nombre</label> -->
-                                <input type="text" name="name" v-model="newOwner" :placeholder="owner">
+                                <input class="new-data" maxlength="20" type="text" name="name" v-model="newOwner" :placeholder="owner">
                             </div>
                             <div class="input">
                                 <!-- <label for="apellido">Apellido</label> -->
-                                <input type="text" name="lastName" v-model="newLastName" :placeholder="lastName">
+                                <input class="new-data" maxlength="30" type="text" name="lastName" v-model="newLastName" :placeholder="lastName">
                             </div>
                     </div>
                     <br>
-                    <!-- <h2><strong>INFORMACIÓN DEL VEHICULO</strong></h2>
                     <div class="container-input">
-                            <div class="input">
-                                <label for="placa">Placa</label>
-                                <input type="text" name="card" v-model="card" placeholder=" placa...">
-                            </div>
-                            <div class="input">
-                                <label for="type_of_vehicle">Tipo de vehiculo</label>
-                                <select name="type_of_vehicle" v-model="type_of_vehicle">
-                                    <option value="0">...</option>
-                                </select>
-                            </div>
-                    </div>-->
-                    <div class="container-input">
-                        <!-- <div class="input">
-                            <label for="type_of_vehicle">Tipo de tarifa</label>
-                            <select name="type_of_vehicle" v-model="type_of_vehicle">
-                                <option value="0">...</option>
-                            </select>
-                        </div> -->
                         <div class="input center">
                             <input type="submit" value="Actualizar">
                         </div>
@@ -68,6 +49,7 @@
     </div>
 </template>
 <script> 
+import axios from 'axios';
 export default {
 
     name: 'UpdateMonthlyPayment',
@@ -88,6 +70,71 @@ export default {
         startDate:String,
         expiryDate:String,
         identification:String
+    },
+
+    methods:{
+
+        updateMonthlyPayment(){
+
+            // extraemos el nombre del usuario conectado
+            let userName = localStorage.getItem('userName');
+
+            // extraemos el id de la mensualidad consultada
+            let idMp = localStorage.getItem('idMp');
+
+            // seleccionamos el formulario
+            let form = document.getElementById('updateMp');
+            
+            // creamos un objeto
+            let datos = new FormData(form);
+
+            let objData = {
+                'name':datos.get('name'),
+                'lastName':datos.get('lastName'),
+                'telephone':datos.get('telephone'),
+                'dni':datos.get('dni')
+            };
+
+            // concatenamos la url
+            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName +'/' + idMp
+
+            // realizamos la peticion
+            axios.put(url, objData)
+                .then((res) => {
+
+                    // mostramos una alerta
+                    alert(res.data.msg)
+
+                    // limpiamos los compos
+                    this.newOwner = ''
+                    this.newLastName = ''
+                    this.newIdentification = ''
+                    this.newTelephone = ''
+
+                    // llamamos a la funcion que consulta la mensualidad para recargar
+                    this.$root.$refs.A.queryMonthlyPayment();
+
+                })
+                .catch((err) => {
+
+                    // retornamos el error
+                    alert(err.response.data.error)
+                })
+        }
+
+    },
+
+    mounted(){
+
+        
+        
+        // // limpiamos los datos anteriorimente ingresados
+        // for (let i = 0; i < inputs.length; i++) {
+        //     inputs[i].value = '';
+        // }
+        
+
+
     }
 }
 </script>

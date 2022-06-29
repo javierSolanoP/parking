@@ -142,23 +142,21 @@ export default {
 
         // Metodo para habilitar el componente que agreaga mensualidades: 
         addMonthlyPayment() {  
-            this.view = false
-            this.update = false
-            this.add = true
-            // // Condicionamos la visibilidad del componente: 
-            // if(this.add){
-            //     this.add = false;
-            // }else if(!this.add){
-            //     console.log('click')
-            //     // Condicionamos la visibilidad de los otros componentes: 
-            //     if(this.view){
-            //         this.view = false;
-            //     }else if(this.update){
-            //         this.update = false;
-            //     }
+            
+            // Condicionamos la visibilidad del componente: 
+            if(this.add){
+                this.add = false;
+            }else if(!this.add){
+                console.log('click')
+                // Condicionamos la visibilidad de los otros componentes: 
+                if(this.view){
+                    this.view = false;
+                }else if(this.update){
+                    this.update = false;
+                }
 
-            //     this.add = true;
-            // }
+                this.add = true;
+            }
         }, 
 
         // Metodo para habilitar el componente que actualiza mensualidades: 
@@ -201,19 +199,6 @@ export default {
 
             }
         })
-
-        // document.addEventListener('click', (e) => {
-
-        //     if(e.target.matches('.yes')){
-        //         document.body.style.display = 'none'
-
-        //         setTimeout(() => {
-        //             document.body.style.display = 'block'
-        //         }, 2000);
-        //         console.log('siiiii')
-        //     }
-            
-        // })
 
     }
 }
