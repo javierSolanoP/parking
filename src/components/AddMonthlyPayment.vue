@@ -24,11 +24,11 @@
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="nombre">Nombre</label> -->
-                                <input type="text" name="name" v-model="datos.name" required placeholder=" Nombre...">
+                                <input maxlength="20" type="text" name="name" v-model="datos.name" required placeholder=" Nombre...">
                             </div>
                             <div class="input">
                                 <!-- <label for="apellido">Apellido</label> -->
-                                <input type="text" name="lastName" v-model="datos.lastName" required placeholder=" Apellido...">
+                                <input maxlength="30" type="text" name="lastName" v-model="datos.lastName" required placeholder=" Apellido...">
                             </div>
                     </div>
                     <br>
