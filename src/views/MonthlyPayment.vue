@@ -91,7 +91,7 @@ export default {
             let userName = localStorage.getItem('userName');
 
             // concatenamos la url 
-            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName + '/' + this.monthly_payment;
+            let url =  `${this.$urlServiceMonthlyPay}/monthly-payments/v1/${userName}/${this.monthly_payment}`;
             
             // realizamos la peticion
             axios.get(url)
@@ -150,7 +150,7 @@ export default {
             if(this.add){
                 this.add = false;
             }else if(!this.add){
-                console.log('click')
+
                 // Condicionamos la visibilidad de los otros componentes: 
                 if(this.view){
                     this.view = false;

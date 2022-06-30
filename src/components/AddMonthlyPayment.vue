@@ -7,10 +7,6 @@
                         <label for="dateStart" class="date">Fecha de inicio</label>
                         <input required type="date" name="dateStart" v-model="datos.dateStart">
                     </div>
-                    <!-- <div class="container-input">
-                        <label for="finish_date" class="date">Fecha de caducidad</label>
-                        <input type="date" name="finish_date" v-model="finish_date">
-                    </div> -->
                 </div>
                 <div class="container-right">
                     <h1><strong>INFORMACIÓN DEL DUEÑO</strong></h1>
@@ -102,7 +98,7 @@ export default {
             let userName = localStorage.getItem('userName');
 
             // realizmos la peticion
-            axios.get('http://127.0.0.1:8000/api/system-admin/tariffs/v1/' + userName)
+            axios.get(`${this.$urlServiceMonthlyPay}/tariffs/v1/${userName}`)
                 .then((res) => {
 
                     // almacenamos los tipos de tarifas
@@ -142,7 +138,7 @@ export default {
             data.append('dateStart', dateStart);
 
             // realizamos la peticion
-            axios.post('http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName, data)
+            axios.post(`${this.$urlServiceMonthlyPay}/monthly-payments/v1/${userName}`, data)
                 .then((res) => {
 
                     if(res.status == 201){

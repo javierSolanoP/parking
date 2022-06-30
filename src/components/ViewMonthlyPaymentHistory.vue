@@ -89,8 +89,6 @@
         />
     </div>
 
-    
-
 </template>
 
 <script>
@@ -188,7 +186,7 @@ export default {
             let paymentDate = date.toLocaleDateString().split("/").join("-")
 
             // concatenamos el url
-            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName + '/' + idMp +  '/paid/' + paymentDate
+            let url =  `${this.$urlServiceMonthlyPay}/monthly-payments/v1/${userName}/${idMp}/paid/${paymentDate}`
 
             // realizamos la peticion
             axios.put(url)
@@ -240,7 +238,6 @@ export default {
 :root{
     --bg-color: #265281;
 }
-
 
 
 /* Para moviles */
@@ -303,11 +300,12 @@ export default {
         border-radius: 1rem;
     }
     .data.success{
-        background-color: rgb(54, 230, 54);
         width: 90%;
         height: 30%;
         font-weight: normal;  
-        font-style: normal;  
+        font-style: normal;
+        color: #fff;
+        background-color: #32C77F;
     }
     .data.fail{
         background-color: rgb(219, 10, 10);
@@ -537,14 +535,15 @@ export default {
         border-radius: 1rem;
     }
     .data.success{
-        background-color: rgb(54, 230, 54);
+        background-color: #32C77F;
+        color: #fff;
         width: 90%;
         height: 30%;
         font-weight: normal;  
         font-style: normal;  
     }
     .data.fail{
-        background-color: rgb(219, 10, 10);
+        background-color: #D22121;
         width: 90%;
         height: 30%;
         color: #fff;

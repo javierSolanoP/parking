@@ -72,7 +72,7 @@ export default {
             let userName = localStorage.getItem('userName')
             
             // realizamos la peticion para cerrar sesion
-            axios.post('http://127.0.0.1:8080/api/users/logout/v1/' + userName)
+            axios.post(`${this.$urlServiceUser}users/logout/v1/${userName}`)
                 .then(function (){
 
                     // removemos el nombre del localstorage
@@ -189,8 +189,6 @@ export default {
     --bg-color: #265281;
 }
 
-
-/* @media print and (width: 8cm) and (height: 12cm){ */
 @media print{
 
   #asideContainer,
@@ -215,14 +213,6 @@ export default {
     height: 0cm;
   }
 
-
-
-  /* @page{
-    width: 8cm;
-    height: 12cm;    
-  } */
-
-  
 }
 
 </style>

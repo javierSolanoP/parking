@@ -46,7 +46,7 @@ export default {
       };
 
       // realizamos la peticion
-      axios.post('http://127.0.0.1:8080/api/users/login/v1', loginData)
+      axios.post(`${this.$urlServiceUser}users/login/v1`, loginData)
         .then(function (response){
 
           // almacenamos el nombre de usuario

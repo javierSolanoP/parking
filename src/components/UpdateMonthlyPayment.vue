@@ -97,7 +97,7 @@ export default {
             };
 
             // concatenamos la url
-            let url = 'http://127.0.0.1:8000/api/system-admin/monthly-payments/v1/' + userName +'/' + idMp
+            let url = `${this.$urlServiceMonthlyPay}/monthly-payments/v1/${userName}/${idMp}`
 
             // realizamos la peticion
             axios.put(url, objData)
@@ -123,19 +123,6 @@ export default {
                     alert(err.response.data.error)
                 })
         }
-
-    },
-
-    mounted(){
-
-        
-        
-        // // limpiamos los datos anteriorimente ingresados
-        // for (let i = 0; i < inputs.length; i++) {
-        //     inputs[i].value = '';
-        // }
-        
-
 
     }
 }
