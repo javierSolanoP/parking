@@ -24,11 +24,11 @@
                     <div class="container-input">
                             <div class="input">
                                 <!-- <label for="nombre">Nombre</label> -->
-                                <input maxlength="20" type="text" name="name" v-model="datos.name" required placeholder=" Nombre...">
+                                <input class="cap" maxlength="20" type="text" name="name" v-model="datos.name" required placeholder=" Nombre...">
                             </div>
                             <div class="input">
                                 <!-- <label for="apellido">Apellido</label> -->
-                                <input maxlength="30" type="text" name="lastName" v-model="datos.lastName" required placeholder=" Apellido...">
+                                <input class="cap" maxlength="30" type="text" name="lastName" v-model="datos.lastName" required placeholder=" Apellido...">
                             </div>
                     </div>
                     <br>
@@ -79,7 +79,8 @@ export default {
                 lastName: '',
                 plate: '',
                 dateStart: '',
-                tariff: ''
+                tariff: '',
+                searchPlate:''
             },
 
             tariffs: [
@@ -143,7 +144,10 @@ export default {
 
                     if(res.status == 201){
 
+                        let inputPlate = document.getElementById('plateInput')
+                        inputPlate.value = this.datos.plate
                         alert('Mensualidad Creada Exitosamente!');
+
                     }
                 })
                 .catch((err) => {
@@ -357,6 +361,11 @@ export default {
         font-size: 120%;
         border-radius: 1rem;
     }
+
+    .cap{
+        text-transform: capitalize;
+    }
+
 
     /* Contenedor derecho */
     .container-right{

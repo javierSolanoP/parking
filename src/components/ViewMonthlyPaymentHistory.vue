@@ -10,7 +10,7 @@
                     <div class="container-option-button">
                         <div class="option button">
                             <button class="pay" @click="openModalPay">
-                                    <img src="/pagar.png" alt="Icono de pagar mensualidad">
+                                    <img src="/hand.png" alt="Icono de pagar mensualidad">
                             </button>
                         </div>
                         <div class="option button">
@@ -324,7 +324,7 @@ export default {
         flex-direction: row;
     }
     .option.button button{
-        background-color: rgb(221, 221, 19);
+        /* background-color: rgb(221, 221, 19); */
         width: 60%;
         height: 90%;
         cursor: pointer;
@@ -344,7 +344,7 @@ export default {
     }
 
     .option.button .pay{
-        background-color: rgb(216, 216, 16);
+        /* background-color: rgb(216, 216, 16); */
     }
 
     .option.button .renew{
@@ -469,7 +469,7 @@ export default {
     }
 
     .option.yes.pay{
-        background-color: rgb(216, 216, 16);;
+        background-color: rgb(216, 216, 16);
     }
 
     .option.yes.renew{

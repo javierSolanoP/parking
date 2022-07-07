@@ -33,7 +33,7 @@
                     <h2>Fecha Fin</h2>
                 </div>
                 <div class="infoContainerData">
-                    <p>{{tariff}}</p>
+                    <p class="cap" >{{tariff}}</p>
                     <p>Mensualidad</p>
                     <p>{{fechaInicio}}</p>
                     <p>{{fechaFin}}</p>
@@ -58,12 +58,17 @@
                     </div>
                 </div>
             </div>
+            <div class="code-bar-container">
+                <vue-barcode :value="this.plate" height="50" :width="3" ></vue-barcode>
+            </div>
         </div>
     </div>
 
 </template>
-
+// :value="this.plate"
 <script>
+import VueBarcode from 'vue-barcode';
+
 export default {
     name:'TicketMonthlyPayment',
 
@@ -76,6 +81,10 @@ export default {
         subTotal:Number,
         iva:Number,
         total:Number
+    },
+
+    components:{
+        VueBarcode
     }
 }
 </script>
@@ -87,6 +96,11 @@ export default {
     margin: 0;
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #000;
+}
+
+.cap{
+    text-transform: capitalize;
 }
 
 .container{
@@ -211,6 +225,13 @@ export default {
 .total{
     border: 1px solid black;
     border-radius: 15px;
+}
+
+.code-bar-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-top: 35px;
 }
 
 </style>

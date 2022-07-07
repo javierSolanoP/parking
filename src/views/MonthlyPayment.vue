@@ -92,7 +92,7 @@ export default {
 
             // concatenamos la url 
             let url =  `${this.$urlServiceMonthlyPay}/monthly-payments/v1/${userName}/${this.monthly_payment}`;
-            
+
             // realizamos la peticion
             axios.get(url)
                 .then((response) => {

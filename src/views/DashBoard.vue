@@ -195,6 +195,7 @@ export default {
   #testV,
   #monthlyPayment,
   #formMp,
+  #addMonthlyPayment
   img{
     display: none;
   }
@@ -214,6 +215,10 @@ export default {
   }
 
 }
+
+/* #ticket{
+    display: block;
+} */
 
 </style>
 
