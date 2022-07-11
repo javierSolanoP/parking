@@ -195,7 +195,9 @@ export default {
   #testV,
   #monthlyPayment,
   #formMp,
-  #addMonthlyPayment
+  #addMonthlyPayment,
+  #updateMp,
+  #updateMonthlyPayment
   img{
     display: none;
   }
