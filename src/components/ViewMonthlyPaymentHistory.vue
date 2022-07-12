@@ -15,7 +15,7 @@
                         </div>
                         <div class="option button">
                             <button class="renew" @click="openModalRenew">
-                                <img src="/renovar.png" alt="Icono de renovar mensualidad">
+                                <img src="/facturas.png" alt="Icono de renovar mensualidad">
                             </button>
                         </div>
                     </div>
@@ -64,11 +64,11 @@
         <div class="container-modal renew">
             <div class="modal">
                     <div class="head renew">
-                        <h1>RENOVACIÓN DE MENSUALIDAD</h1>
+                        <h1>GENERAR RECIBO</h1>
                     </div>
                     <br>
                     <div class="body">
-                        <h2>¿Quiere renovar la mensualidad con el mismo rango de fecha?</h2>
+                        <h2>¿Quiere generar el recibo de la mensualidad?</h2>
                         <div class="container-button">
                             <button @click="validateOption" class="option yes renew">Si</button>
                             <button @click="cancelOptionRenew" class="option no">No</button>
@@ -228,7 +228,48 @@ export default {
         },
 
         validateOption(){
-            console.log('renovar mensualidad');
+            
+            // obtenemos el nombre del usuario
+            let userName = localStorage.getItem('userName');
+
+            // obtenemos el id de la mensualidad
+            let idMp = localStorage.getItem('idMp');
+
+            // concatenamos el url
+            let url =  `${this.$urlServiceMonthlyPay}/monthly-payments-ticket/v1/${userName}/${idMp}`
+
+            // realizamos la peticion
+            axios.get(url)
+                .then((res) => {
+                    
+                    // almacenamos los datos del recibo
+                    let ticketData = res.data.ticket;
+
+                    // asignamos los datos para el recibo
+                    this.tariff = ticketData.tariffName;
+                    this.subTotal = ticketData.subTotal;
+                    this.iva = ticketData.iva;
+                    this.total = ticketData.total;
+                    this.fechaInicio = ticketData.startDate.split("-").reverse().join("/");
+                    this.fechaFin = ticketData.expiryDate.split("-").reverse().join("/");
+                    this.date = ticketData.paymentDate;
+                    this.plate = ticketData.plate;
+
+                    // ejecutamos la funcion de imprimir
+                    setTimeout(() => {
+                        print()
+                    }, 500)
+
+                    // deshabilitamos algunas vistas
+                    this.cancelOptionRenew();
+                    this.cancelOptionPay();
+                    
+                })
+                .catch((err) => {
+                    alert(err.response.data.error)
+                    this.cancelOptionRenew();
+
+                })
         }
     }
 }
@@ -578,12 +619,15 @@ export default {
 
     .option.button .pay{
         margin-left: -50%;
-        background-color: rgb(216, 216, 16);
+        /* background-color: rgb(216, 216, 16); */
+        background-color: #fff;
     }
 
     .option.button .renew{
         margin-left: 50%;
-        background-color: rgb(54, 230, 54);
+        /* background-color: rgb(54, 230, 54); */
+        background-color: #fff;
+        /* border: 1px solid #265281; */
     }
     /* Datos del dueño del vehiculo */
     .container .owner{
@@ -671,10 +715,10 @@ export default {
         justify-content: center;
     }
     .head.pay{
-        border-bottom: 0.25rem solid rgb(216, 216, 16);
+        border-bottom: 0.25rem solid #265281;
     }
     .head.renew{
-        border-bottom: 0.25rem solid rgb(54, 230, 54);
+        border-bottom: 0.25rem solid #32C77F;
     }
     .modal .body{
         width: 90%;
@@ -703,15 +747,16 @@ export default {
     }
 
     .option.yes.pay{
-        background-color: rgb(216, 216, 16);;
+        background-color: #265281;
     }
 
     .option.yes.renew{
-        background-color: rgb(54, 230, 54);
+        background-color: #32C77F;
     }
 
     .option.no{
-        background-color: red;
+        background-color: #fff;
+        border: 1px solid #265281;
         color: #000;
     }
 }
