@@ -748,10 +748,12 @@ export default {
 
     .option.yes.pay{
         background-color: #265281;
+        color: #fff;
     }
 
     .option.yes.renew{
         background-color: #32C77F;
+        color: #fff;
     }
 
     .option.no{
